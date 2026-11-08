@@ -1,0 +1,72 @@
+Glyph
+Copyright 2026 BitWise Media Group Ltd
+Licensed under the MIT License (see LICENSE).
+
+Glyph is an independent implementation. It contains no code from xdripswift
+(GPL-3.0), which was used only as a behavioural reference for protocol facts
+(UUIDs, command bytes, offsets, timings).
+
+Glyph is personal software, not a medical device.
+
+-------------------------------------------------------------------------------
+Third-party material
+-------------------------------------------------------------------------------
+
+1. LibreTools — https://github.com/ivalkou/LibreTools
+   MIT License, Copyright (c) 2020 Ivan Valkou.
+   The repository is MIT-licensed; individual file headers read "All rights
+   reserved", which the repository-level MIT grant covers.
+
+   - Sources/LibreKit/Libre2Crypto.swift ports the Libre 2 block cipher, FRAM
+     and BLE decryption and the command signature from
+     Sources/LibreTools/Sensor/Libre2.swift.
+   - Sources/LibreKit/CRC16.swift and SensorSerial.swift implement the CRC and
+     serial-number scheme described in CRC16.swift and
+     SensorSerialNumber.swift (originally by Uwe Petersen, LibreMonitor).
+   - Tests/LibreKitTests/Fixtures.swift and the simulator's sensor identity
+     (App/Glyph/Sensor/SimulatedSensorSource.swift) use the example FRAM
+     images, patch infos, UIDs and BLE frame published in Libre2.swift.
+
+2. GlucoseDirect — https://github.com/creepymonster/GlucoseDirect
+   MIT License, Copyright (c) 2023 Reimar Metzen.
+   GlucoseDirect credits guidos, ivalkou and dabear.
+
+   - Sources/LibreKit/Libre2Crypto.swift ports the enable-streaming
+     parameters and the BLE streaming-unlock payload from
+     App/Modules/SensorConnector/SensorUtility.swift.
+   - App/Glyph/Sensor/NFCSensorReader.swift follows the NFC pairing flow of
+     LibreConnection/LibreNFC.swift (which credits DiaBLE).
+   - The decrypted fixtures and the factory-calibration expected values in
+     Tests/LibreKitTests are outputs of GlucoseDirect's implementation for the
+     LibreTools inputs.
+
+3. DiaBLE — https://github.com/gui-dos/DiaBLE
+   MIT License, Copyright (c) 2026 Guido Soranzio.
+
+   - FRAM layout, history-record timing and product codes (C6, 7F; Libre 2
+     Plus detection) follow DiaBLE/Libre.swift and DiaBLE/Libre2.swift.
+
+4. LibreTransmitter — https://github.com/LoopKit/LibreTransmitter
+   MIT License, Copyright (c) 2016 Mark Wilson.
+   Consulted for reference only; no code taken. Its SensorPairingService.swift
+   (likely adapted from xdripswift) and GlucoseSmoothing.swift (citing GPL
+   xDrip+) were deliberately avoided.
+
+-------------------------------------------------------------------------------
+ISOLATED: factory calibration — legal opinion required before publication
+-------------------------------------------------------------------------------
+
+Sources/LibreKit/Calibration/FactoryCalibration.swift converts raw sensor
+values to mg/dL using the FRAM parameters i1–i6, a thermistor model and a
+sensitivity grid. This conversion first appeared publicly in xdripswift
+(GPL-3.0, 2020). The MIT-licensed projects that carry the same constants
+(DiaBLE, GlucoseDirect, LibreTransmitter) cite xdripswift as their source,
+so the MIT status of this piece is doubtful.
+
+Glyph's file was written from a plain-language specification of the maths
+(docs/factory-calibration.md), not copied: the 1 023-entry grid is generated
+from its structure rather than reproduced. It is the only file that
+implements the conversion and sits behind the GlucoseConverter protocol so it
+can be replaced (for example by a fingerstick-based LinearCalibration).
+
+Obtain a legal opinion on this file before the repository is made public.
