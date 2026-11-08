@@ -1,0 +1,36 @@
+# Copyright 2026 BitWise Media Group Ltd
+# SPDX-License-Identifier: MIT
+
+# Binary files live in Git LFS, so clones stay small and re-exported artwork
+# doesn't pile up in history. Each clone needs `git lfs install --local` once,
+# or a push uploads pointers without their content.
+#
+# SVGs (the icon layers, the App Store masters) are text and stay in git.
+
+# Images: the App Store artwork and screenshots, the icon preview
+*.png filter=lfs diff=lfs merge=lfs -text
+*.jpg filter=lfs diff=lfs merge=lfs -text
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+*.gif filter=lfs diff=lfs merge=lfs -text
+*.webp filter=lfs diff=lfs merge=lfs -text
+*.heic filter=lfs diff=lfs merge=lfs -text
+*.tif filter=lfs diff=lfs merge=lfs -text
+*.tiff filter=lfs diff=lfs merge=lfs -text
+
+# Video and documents: App Store previews, exported PDFs
+*.mov filter=lfs diff=lfs merge=lfs -text
+*.mp4 filter=lfs diff=lfs merge=lfs -text
+*.m4v filter=lfs diff=lfs merge=lfs -text
+*.pdf filter=lfs diff=lfs merge=lfs -text
+
+# Design sources and fonts
+*.pxd filter=lfs diff=lfs merge=lfs -text
+*.psd filter=lfs diff=lfs merge=lfs -text
+*.sketch filter=lfs diff=lfs merge=lfs -text
+*.ttf filter=lfs diff=lfs merge=lfs -text
+*.otf filter=lfs diff=lfs merge=lfs -text
+*.woff filter=lfs diff=lfs merge=lfs -text
+*.woff2 filter=lfs diff=lfs merge=lfs -text
+
+# Archives
+*.zip filter=lfs diff=lfs merge=lfs -text
