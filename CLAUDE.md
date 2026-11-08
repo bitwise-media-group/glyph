@@ -14,8 +14,12 @@ personal software, not a medical device.
 - `App/`: the iOS app (`Glyph`) and the widget extension (`GlyphWidgets`). `App/Shared` is compiled into both.
 - `design/app-icon/`: the app icon. `AppIcon.icon` is an Icon Composer document that Xcode compiles into the layered
   icons, and `generate.py` writes its SVG layers. Edit the icon there, not in the asset catalog.
-- `ci_scripts/`: Xcode Cloud's hooks (they must sit beside the project). The workflows themselves live in Xcode Cloud,
-  not the repo. Xcode Cloud sets the build number itself.
+- CI is split in two:
+  - **GitHub Actions** (`.github/workflows/ci.yaml`) runs the gates that need no Xcode: lint, package build and tests on
+    Linux, and the XcodeGen drift check.
+  - **Xcode Cloud** builds and tests the app on pull requests, sends merges to `main` to TestFlight, and builds `v*`
+    tags for the App Store. Its workflows live in App Store Connect, managed through the API, not in the repo.
+- `ci_scripts/`: Xcode Cloud's hooks (they must sit beside the project). Xcode Cloud sets the build number itself.
 - `project.yml`: the XcodeGen spec. `Glyph.xcodeproj` is generated from it and committed. Run `mise run gen` after
   editing `project.yml` or adding or removing app files. CI fails if the two drift.
 
