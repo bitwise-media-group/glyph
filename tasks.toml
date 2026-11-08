@@ -1,0 +1,103 @@
+# Copyright 2026 BitWise Media Group Ltd
+# SPDX-License-Identifier: MIT
+#
+# The Swift and Xcode surface, adapted from atem-to-fcp. The toolchain's common
+# tasks carry prose, license, shell and workflow checks; this file defines
+# build/test (which the reusable CI discovers and runs on Linux, covering
+# LibreKit) and restates the fmt/lint/ci/pr rollups with the Swift passes
+# added. It is included after common (see mise.toml), so its rollups replace
+# common's whole-task. swift, swift-format (`swift format`) and llvm-cov all
+# come from the core:swift pin in mise.toml.
+
+# LibreKit only: the package is Foundation-only, so this runs on Linux CI.
+[build]
+description = "swift build (release) of LibreKit"
+dir = "{{config_root}}"
+run = "swift build --configuration release"
+
+# Swift Testing with coverage. Writes coverage/cobertura-coverage.xml and
+# coverage/junit.xml, the files the reusable CI uploads to Codecov.
+[test]
+description = "swift test with coverage (coverage/cobertura-coverage.xml, coverage/junit.xml)"
+dir = "{{config_root}}"
+run = "{{config_root}}/scripts/test.sh"
+
+[fmt-swift]
+hide = true
+dir = "{{config_root}}"
+run = "swift format format --in-place --recursive --parallel Package.swift Sources Tests App"
+
+[lint-swift]
+hide = true
+dir = "{{config_root}}"
+run = "swift format lint --strict --recursive --parallel Package.swift Sources Tests App"
+
+# Regenerate Glyph.xcodeproj from project.yml. The project is committed, so
+# run this after editing project.yml or adding/removing app source files.
+[gen]
+description = "generate Glyph.xcodeproj from project.yml (XcodeGen)"
+dir = "{{config_root}}"
+run = "xcodegen generate --spec project.yml"
+
+# The app and widget extension, built for the iOS simulator with no signing.
+# Needs Xcode 27.2+ (iOS 27.2 SDK); runs locally and on the macOS CI job.
+[app-build]
+description = "xcodebuild the Glyph app + widgets for the iOS simulator (needs Xcode)"
+dir = "{{config_root}}"
+run = """
+xcodebuild build \
+  -project Glyph.xcodeproj \
+  -scheme Glyph \
+  -destination 'generic/platform=iOS Simulator' \
+  -derivedDataPath .build/xcode \
+  CODE_SIGNING_ALLOWED=NO
+"""
+
+# Screenshots of every glucose scenario on the screens it affects, in portrait
+# and landscape, via the GlyphUITests target, on the iPhone Duo and iPhone 18
+# Pro simulators by default. DESTINATIONS (';'-separated, e.g.
+# 'id=<udid>' for a device) and SCREENSHOTS_DIR (.build/screenshots) override.
+[screenshots]
+description = "UI-test screenshots of every scenario per device (DESTINATIONS, SCREENSHOTS_DIR)"
+dir = "{{config_root}}"
+run = "{{config_root}}/scripts/screenshots.sh"
+
+# Xcode Cloud's hooks must live in ci_scripts/ beside the project, outside the
+# scripts/ and hack/ directories the common lint-shell covers.
+[lint-ci-scripts]
+hide = true
+dir = "{{config_root}}"
+run = "shellcheck ci_scripts/*.sh"
+
+# Rollups: common's passes, then the Swift ones. Sequential, so fmt's
+# mutating passes never race and fmt precedes lint inside pr.
+[fmt]
+description = "format Swift and prose, inject license headers"
+run = [{ task = "fmt-swift" }, { task = "fmt-prose" }, { task = "license" }]
+
+[lint]
+description = "swift-format + prose lint + license, container, shell and workflow checks"
+run = [
+  { task = "lint-swift" },
+  { task = "license-check" },
+  { task = "lint-containers" },
+  { task = "lint-shell" },
+  { task = "lint-ci-scripts" },
+  { task = "lint-workflows" },
+  { task = "lint-prose" },
+]
+
+[ci]
+description = "the gates the reusable CI workflow runs"
+run = [{ task = "lint" }, { task = "build" }, { task = "test" }]
+
+[pr]
+description = "full local gate before a pull request"
+run = [
+  { task = "fmt" },
+  { task = "lint" },
+  { task = "build" },
+  { task = "test" },
+  { task = "app-build" },
+  { task = "commit" },
+]

@@ -1,0 +1,33 @@
+# Copyright 2026 BitWise Media Group Ltd
+# SPDX-License-Identifier: MIT
+#
+# glyph consumes the shared toolchain (bitwise-media-group/toolchain) as the
+# .mise/ submodule: mise loads its config.toml natively as .mise/config.toml
+# (pinned tools -- bun, markdownlint, addlicense, shellcheck, actionlint,
+# zizmor, ... -- and the [vars] knob defaults). Like atem-to-fcp, this repo
+# includes common only and carries its Swift build/test/fmt/lint (and the
+# rollups that wire them in) in tasks.toml, included LAST so its same-named
+# tasks win over common's. tasks.toml also adds the Xcode side: `gen`
+# (XcodeGen) and `app-build` (xcodebuild for the iOS simulator). The Makefile
+# is a thin forwarder (.mise/common/include.mk).
+#
+# Swift is pinned here, so `swift build`, `swift test` and `swift format`
+# (which ships with the toolchain) are the same everywhere. LibreKit is
+# Foundation-only, so the Linux CI jobs build and test it with this pin; the
+# app itself needs Xcode (see app-build).
+
+[settings]
+lockfile = true
+locked = false
+minimum_release_age = "3d"
+
+[task_config]
+includes = [".mise/common/tasks.toml", "tasks.toml"] # common first, repo-local Swift + Xcode tasks last
+
+[tools]
+# swift.org toolchain: on macOS it builds against the Xcode SDK; on Linux CI it
+# builds and tests LibreKit (Foundation only).
+"core:swift" = "6.4.2"
+# Generates Glyph.xcodeproj from project.yml (`mise run gen`). macOS only:
+# XcodeGen ships no Linux build, and the Linux CI jobs don't need it.
+"aqua:yonaskolb/XcodeGen" = { version = "2.46.0", os = ["macos"] }

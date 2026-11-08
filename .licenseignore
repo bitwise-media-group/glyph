@@ -1,0 +1,5 @@
+Glyph.xcodeproj/**
+App/**/Info.plist
+App/**/*.entitlements
+App/**/*.xcassets/**
+Package.resolved
