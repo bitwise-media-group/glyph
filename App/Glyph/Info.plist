@@ -28,6 +28,8 @@
 	<string>Glyph reads your FreeStyle Libre 2 sensor over NFC to pair with it.</string>
 	<key>NSBluetoothAlwaysUsageDescription</key>
 	<string>Glyph receives a glucose reading from your sensor over Bluetooth every minute, including in the background.</string>
+	<key>NSHealthShareUsageDescription</key>
+	<string>Glyph saves your glucose readings to the Health app. It doesn't read your other Health data.</string>
 	<key>NSHealthUpdateUsageDescription</key>
 	<string>Glyph can save your glucose readings to the Health app.</string>
 	<key>NSSupportsLiveActivities</key>

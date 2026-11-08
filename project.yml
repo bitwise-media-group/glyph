@@ -53,7 +53,9 @@ targets:
     platform: iOS
     sources:
       - path: App/Glyph
+        excludes: ["**/.claude"] # agent tooling, never app sources
       - path: App/Shared
+        excludes: ["**/.claude"] # agent tooling, never app sources
       # The app icon (Icon Composer), with its sources in design/app-icon.
       - path: design/app-icon/AppIcon.icon
     dependencies:
@@ -96,6 +98,10 @@ targets:
         NFCReaderUsageDescription: Glyph reads your FreeStyle Libre 2 sensor over NFC to pair with it.
         NSBluetoothAlwaysUsageDescription: Glyph receives a glucose reading from your sensor over Bluetooth every minute, including in the background.
         NSHealthUpdateUsageDescription: Glyph can save your glucose readings to the Health app.
+        # App Store Connect requires this alongside the update string for any
+        # app with the HealthKit entitlement (ITMS-90683), though Glyph only
+        # writes to Health.
+        NSHealthShareUsageDescription: Glyph saves your glucose readings to the Health app. It doesn't read your other Health data.
         ITSAppUsesNonExemptEncryption: false
 
   GlyphWidgets:
@@ -103,7 +109,9 @@ targets:
     platform: iOS
     sources:
       - path: App/GlyphWidgets
+        excludes: ["**/.claude"] # agent tooling, never app sources
       - path: App/Shared
+        excludes: ["**/.claude"] # agent tooling, never app sources
     dependencies:
       - package: Glyph
         product: LibreKit
@@ -137,6 +145,7 @@ targets:
     platform: iOS
     sources:
       - path: App/GlyphUITests
+        excludes: ["**/.claude"] # agent tooling, never app sources
     dependencies:
       - target: Glyph
     settings:
