@@ -20,6 +20,10 @@ personal software, not a medical device.
   - **Xcode Cloud** builds and tests the app on pull requests, sends merges to `main` to TestFlight, and builds `v*`
     tags for the App Store. Its workflows live in App Store Connect, managed through the API, not in the repo.
 - `ci_scripts/`: Xcode Cloud's hooks (they must sit beside the project). Xcode Cloud sets the build number itself.
+- The docs site (Zensical, in dotty's theme): `zensical.toml`, `pyproject.toml`/`uv.lock`, the pages in `docs/`, and
+  `overrides/` for the landing page and header. `docs/javascripts/glyph.js` draws the app mockups into `data-gl-mock`
+  placeholders; keep them in step with the SwiftUI screens. `docs/factory-calibration.md` is excluded from the site.
+  `mise run serve` previews it; the release workflow publishes it to GitHub Pages.
 - `project.yml`: the XcodeGen spec. `Glyph.xcodeproj` is generated from it and committed. Run `mise run gen` after
   editing `project.yml` or adding or removing app files. CI fails if the two drift.
 

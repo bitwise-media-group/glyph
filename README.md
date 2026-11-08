@@ -14,6 +14,9 @@ It is designed for the **iPhone Duo** first:
 > Glyph is personal software, **not a medical device**. It can't be distributed on the App Store as a CGM. Install it on
 > your own devices from Xcode or TestFlight. Don't make treatment decisions from it alone.
 
+The [documentation site](https://oss.bitwisemedia.uk/glyph/) covers pairing a sensor, every screen and setting, and
+local development. Its source is in `docs/`.
+
 ## What it does
 
 - **Now:** the current value in mmol/L or mg/dL, with a trend arrow, the change over 5 minutes and the time since the
@@ -56,6 +59,7 @@ mise run test        # LibreKit + GlyphCore tests, with coverage
 mise run gen         # regenerate Glyph.xcodeproj from project.yml
 mise run app-build   # build the app and widgets for the iOS Simulator
 mise run screenshots # screenshot every glucose scenario on the iPhone Duo and iPhone 18 Pro simulators
+mise run serve       # preview the documentation site at http://localhost:8003
 open Glyph.xcodeproj # then run on a device
 ```
 
