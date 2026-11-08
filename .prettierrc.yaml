@@ -1,0 +1,18 @@
+# Copyright 2026 BitWise Media Group Ltd
+# SPDX-License-Identifier: MIT
+
+# The house prose layout (.mise/.prettierrc.yaml), which this file replaces
+# wholesale, plus one override for the docs site.
+proseWrap: always
+printWidth: 120
+overrides:
+  # Python-Markdown (Zensical) nests blocks under a list item only when they
+  # are indented four spaces; bun/Prettier aligns them to the marker (two or
+  # three) unless tabWidth is 4. Without this, grid-card bodies and blocks
+  # inside numbered steps fall out of their lists.
+  # The factory-calibration spec lives in docs/ but isn't a page of the site
+  # (zensical.toml excludes it), so it keeps the house layout.
+  - files: "docs/**/*.md"
+    excludeFiles: "docs/factory-calibration.md"
+    options:
+      tabWidth: 4

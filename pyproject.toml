@@ -1,0 +1,18 @@
+# Copyright 2026 BitWise Media Group Ltd
+# SPDX-License-Identifier: MIT
+
+# The Glyph documentation site (Zensical via uv), built and served by the
+# toolchain's docs-build / serve tasks (`mise run serve`). Not a Python
+# package: no [build-system].
+[project]
+name = "glyph-docs"
+version = "0.1.0"
+description = "Documentation site for Glyph, an iPhone app that reads FreeStyle Libre 2 sensors directly, built with Zensical."
+readme = "README.md"
+requires-python = ">=3.13"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{ name = "BitWise Media Group Ltd.", email = "oss@bitwisemedia.uk" }]
+dependencies = [
+  "zensical>=0.0.53",
+]

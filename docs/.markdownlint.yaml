@@ -1,0 +1,26 @@
+# Copyright 2026 BitWise Media Group Ltd
+# SPDX-License-Identifier: MIT
+
+# markdownlint rules for the docs site's pages. markdownlint-cli2 uses this file
+# INSTEAD of the house rules (.mise/.markdownlint-cli2.yaml's `config:`) for
+# everything under docs/, so the first three rules restate the house rules
+# verbatim; keep them in step with it.
+default: true
+line-length:
+  line_length: 120
+  tables: false
+no-duplicate-heading:
+  siblings_only: true
+
+# What the docs add. The pages embed a little HTML: the app mockups
+# (<figure><div data-gl-mock>), md_in_html blocks (<div markdown>) and menu
+# paths (<span class="gl-path">).
+no-inline-html:
+  allowed_elements:
+    - div
+    - figure
+    - figcaption
+    - span
+# pymdownx admonitions (`!!! note`) and content tabs (`=== "Tab"`) indent their
+# bodies by four spaces, which CommonMark reads as indented code blocks.
+code-block-style: false

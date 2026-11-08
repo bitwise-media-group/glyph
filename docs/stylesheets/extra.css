@@ -1,0 +1,2790 @@
+/*
+ * Copyright 2026 BitWise Media Group Ltd
+ * SPDX-License-Identifier: MIT
+ */
+
+/* ============================================================
+   Glyph docs — dotty's theme for Zensical / Material, reworked for an
+   iPhone app. The palette is dotty's (and the app icon's): warm paper
+   and near-black canvases with the yellow ramp from amber to yellow.
+     Dark  -> Material "slate"   scheme (warm near-black)
+     Light -> Material "default" scheme (warm paper)
+
+   Accent split, as in dotty:
+   - The YELLOW RAMP (--gl-yellow/-2/--gl-amber/--gl-butter) is a FILL
+     colour (buttons, dots, icon tiles, the header underline). It stays
+     bright in both modes, with dark --gl-on-accent text on it.
+   - Accent used as TEXT/strokes is --gl-ink: the yellow in dark mode, a
+     deep amber in light mode, where bright yellow is illegible on paper.
+
+   The phone mockups (.gl-device) are the one place the yellow steps
+   back: they draw the app as iOS renders it, in the system's grouped
+   greys with the app's teal accent and the system glucose colours.
+
+   Sections: tokens · chrome · content · landing (.gl) · app mockups ·
+   animated figures · keyframes · responsive.
+   ============================================================ */
+
+/* ---------- DARK (slate) — warm near-black ---------- */
+[data-md-color-scheme="slate"] {
+    --md-default-bg-color: #15140f;
+    --md-default-bg-color--light: #1f1d15;
+    --md-default-fg-color: #f4efdd;
+    --md-default-fg-color--light: #c8c0a4;
+    --md-default-fg-color--lighter: #8a8160;
+    --md-default-fg-color--lightest: rgba(244, 239, 221, 0.08);
+
+    --md-primary-fg-color: #15140f;
+    --md-primary-fg-color--light: #1f1d15;
+    --md-primary-fg-color--dark: #100f0b;
+    --md-primary-bg-color: #f4efdd;
+    --md-primary-bg-color--light: #c8c0a4;
+
+    --md-accent-fg-color: #f5c518;
+    --md-accent-fg-color--transparent: rgba(245, 197, 24, 0.1);
+    --md-typeset-a-color: #e6b400;
+
+    --md-code-bg-color: #100f0b;
+    --md-code-fg-color: #e7e0c6;
+    --md-code-hl-comment-color: #8a8160;
+    --md-code-hl-keyword-color: #f5c518;
+    --md-code-hl-string-color: #cbb968;
+    --md-code-hl-number-color: #e0a800;
+    --md-code-hl-function-color: #ffd740;
+    --md-code-hl-constant-color: #f0dc93;
+    --md-code-hl-name-color: #e7e0c6;
+    --md-code-hl-operator-color: #e0a800;
+    --md-code-hl-punctuation-color: #8a8160;
+
+    --md-footer-bg-color: #100f0b;
+    --md-footer-bg-color--dark: #0c0b08;
+
+    /* brand ramp — bright fills; ink = yellow on near-black */
+    --gl-yellow: #f5c518;
+    --gl-yellow-2: #ffd740;
+    --gl-amber: #e0a800;
+    --gl-butter: #f0dc93;
+    --gl-ink: #f5c518;
+    --gl-on-accent: #15140f;
+    --gl-bg: #15140f;
+    --gl-surface: #1f1d15;
+    --gl-code: #100f0b;
+    --gl-code-2: #0e0d09;
+    --gl-fg: #f4efdd;
+    --gl-muted: #a39a77;
+    --gl-grey: #6e6749;
+    --gl-line: #34301f;
+    --gl-line-2: #45402b;
+    --gl-ic-bg: #2a2718;
+    --gl-ic-border: rgba(244, 239, 221, 0.14);
+    --gl-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    --gl-shadow-strong: 0 28px 70px rgba(0, 0, 0, 0.55);
+
+    /* the app icon's dark appearance (design/app-icon/README.md) */
+    --gl-icon-bg: #15140f;
+    --gl-icon-base: rgba(200, 192, 164, 0.55);
+    --gl-icon-face: #f4efdd;
+    --gl-icon-wave-0: #e0a800;
+    --gl-icon-wave-1: #ffd740;
+    --gl-icon-reading: #15140f;
+    --gl-icon-glow: drop-shadow(0 0 18px rgba(255, 215, 64, 0.45));
+
+    /* iOS, dark: the app as the system draws it */
+    --gl-ios-bg: #000;
+    --gl-ios-card: #1c1c1e;
+    --gl-ios-card-2: #2c2c2e;
+    --gl-ios-fg: #fff;
+    --gl-ios-secondary: rgba(235, 235, 245, 0.6);
+    --gl-ios-sep: rgba(84, 84, 88, 0.6);
+    --gl-ios-bar: rgba(30, 30, 30, 0.82);
+    --gl-ios-tint: #4ab0c7;
+    --gl-ios-green: #30d158;
+    --gl-ios-orange: #ff9f0a;
+    --gl-ios-red: #ff453a;
+    --gl-ios-yellow: #ffd60a;
+    --gl-ios-blue: #0a84ff;
+    --gl-ios-fill: rgba(120, 120, 128, 0.36);
+    --gl-bezel: #0b0b0a;
+    --gl-bezel-edge: #3a382f;
+}
+
+/* ---------- LIGHT (default) — warm paper ---------- */
+[data-md-color-scheme="default"] {
+    --md-default-bg-color: #fbf8ed;
+    --md-default-fg-color: #211e14;
+    --md-default-fg-color--light: #6f6748;
+    --md-default-fg-color--lighter: #847b58;
+    --md-default-fg-color--lightest: rgba(33, 30, 20, 0.08);
+
+    --md-primary-fg-color: #fbf8ed;
+    --md-primary-fg-color--light: #f7f2e4;
+    --md-primary-fg-color--dark: #f3eedf;
+    --md-primary-bg-color: #211e14;
+    --md-primary-bg-color--light: #6f6748;
+
+    --md-accent-fg-color: #7e6100;
+    --md-accent-fg-color--transparent: rgba(126, 97, 0, 0.1);
+    --md-typeset-a-color: #7e6100;
+
+    --md-code-bg-color: #f3eedf;
+    --md-code-fg-color: #211e14;
+    --md-code-hl-comment-color: #847b58;
+    --md-code-hl-keyword-color: #7e6100;
+    --md-code-hl-string-color: #6f6100;
+    --md-code-hl-number-color: #a85a00;
+    --md-code-hl-function-color: #9a6a00;
+    --md-code-hl-constant-color: #74510a;
+    --md-code-hl-name-color: #211e14;
+    --md-code-hl-operator-color: #7e6100;
+    --md-code-hl-punctuation-color: #847b58;
+
+    /* the footer sits on the paper canvas, so its fg ramp flips to ink */
+    --md-footer-bg-color: #fbf8ed;
+    --md-footer-bg-color--dark: #f3eedf;
+    --md-footer-fg-color: #211e14;
+    --md-footer-fg-color--light: #6f6748;
+    --md-footer-fg-color--lighter: #847b58;
+
+    /* brand ramp — same bright fills as dark; only ink drops */
+    --gl-yellow: #f5c518;
+    --gl-yellow-2: #ffd740;
+    --gl-amber: #e0a800;
+    --gl-butter: #f0dc93;
+    --gl-ink: #7e6100;
+    --gl-on-accent: #15140f;
+    --gl-bg: #fbf8ed;
+    --gl-surface: #fffdf7;
+    --gl-code: #f7f2e4;
+    --gl-code-2: #f3eedf;
+    --gl-fg: #211e14;
+    --gl-muted: #6f6748;
+    --gl-grey: #847b58;
+    --gl-line: #e6decb;
+    --gl-line-2: #d3c8a8;
+    --gl-ic-bg: #f3eedf;
+    --gl-ic-border: rgba(33, 30, 20, 0.12);
+    --gl-shadow: 0 20px 50px rgba(83, 68, 20, 0.14);
+    --gl-shadow-strong: 0 28px 70px rgba(83, 68, 20, 0.2);
+
+    /* the app icon's default appearance */
+    --gl-icon-bg: #fbf8ed;
+    --gl-icon-base: #e6decb;
+    --gl-icon-face: #fffdf7;
+    --gl-icon-wave-0: #a85a00;
+    --gl-icon-wave-1: #e6b400;
+    --gl-icon-reading: #211e14;
+    --gl-icon-glow: drop-shadow(0 6px 14px rgba(168, 90, 0, 0.25));
+
+    /* iOS, light */
+    --gl-ios-bg: #f2f2f7;
+    --gl-ios-card: #fff;
+    --gl-ios-card-2: #f2f2f7;
+    --gl-ios-fg: #000;
+    --gl-ios-secondary: rgba(60, 60, 67, 0.6);
+    --gl-ios-sep: rgba(60, 60, 67, 0.29);
+    --gl-ios-bar: rgba(249, 249, 249, 0.86);
+    --gl-ios-tint: #006b88;
+    --gl-ios-green: #34c759;
+    --gl-ios-orange: #ff9500;
+    --gl-ios-red: #ff3b30;
+    --gl-ios-yellow: #e6b800;
+    --gl-ios-blue: #007aff;
+    --gl-ios-fill: rgba(120, 120, 128, 0.16);
+    --gl-bezel: #1b1a16;
+    --gl-bezel-edge: #4a463a;
+}
+
+/* ============================================================
+   CHROME — header, footer, nav
+   ============================================================ */
+
+/* Header: flat, with the yellow underline */
+.md-header {
+    box-shadow: none;
+    border-bottom: 1px solid var(--gl-line);
+    position: relative;
+}
+.md-header[data-md-state="shadow"],
+.md-header--shadow {
+    box-shadow: none;
+}
+.md-header::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1px;
+    height: 2px;
+    background: linear-gradient(90deg, var(--gl-amber), var(--gl-yellow) 45%, var(--gl-yellow-2));
+}
+.md-header__title {
+    font-weight: 700;
+    letter-spacing: 0.2px;
+}
+.md-footer {
+    border-top: 1px solid var(--gl-line);
+}
+
+/* Header / drawer wordmark: the icon plus "Glyph" (partials/*.html) */
+.gl-headmark {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5em;
+    font-family: var(--md-text-font-family, "Hanken Grotesk", system-ui, sans-serif);
+    font-weight: 800;
+    font-size: 18px;
+    letter-spacing: -0.01em;
+    color: var(--md-primary-bg-color, inherit);
+}
+.gl-headmark .gl-mark {
+    width: 1.55em;
+    height: 1.55em;
+    border-radius: 23%;
+    box-shadow: 0 0 0 1px var(--gl-line);
+}
+.gl-headmark:hover .gl-mark__wave {
+    animation: gl-wave-shimmer 1.2s ease-in-out;
+}
+.gl-headmark:hover {
+    opacity: 0.9;
+}
+[dir="ltr"] .md-search__input {
+    border-radius: 5px;
+}
+.md-nav__link--active,
+.md-nav__item .md-nav__link--active {
+    color: var(--md-accent-fg-color);
+}
+
+/* ---- the inline app icon (partials/glyph-mark.html) ---- */
+.gl-mark {
+    display: block;
+    overflow: visible;
+}
+.gl-mark__bg {
+    fill: var(--gl-icon-bg);
+}
+.gl-mark__base {
+    fill: var(--gl-icon-base);
+}
+.gl-mark__face {
+    fill: var(--gl-icon-face);
+}
+.gl-mark__reading {
+    fill: var(--gl-icon-reading);
+}
+.gl-mark__wave {
+    filter: var(--gl-icon-glow);
+}
+
+/* ============================================================
+   CONTENT — typeset tweaks
+   ============================================================ */
+.md-typeset .md-typeset__table {
+    border-color: var(--gl-line);
+}
+.md-typeset .admonition,
+.md-typeset details {
+    border-left-width: 2px;
+}
+.md-typeset :not(pre) > code {
+    background-color: var(--gl-ic-bg);
+    border: 1px solid var(--gl-ic-border);
+}
+
+/* Menu paths like Settings ▸ Apps ▸ LibreLink, written as <span class="gl-path"> */
+.md-typeset .gl-path {
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+/* Keycaps (pymdownx.keys ++key++): dotty's sculpted yellow caps */
+.md-typeset .keys kbd {
+    display: inline-block;
+    min-width: 1.2em;
+    margin: 0 0.05em;
+    padding: 0.16em 0.5em 0.18em;
+    border: 0;
+    border-radius: 4px 4px 5px 5px;
+    font-family: var(--md-code-font-family, "JetBrains Mono", ui-monospace, monospace);
+    font-size: 0.82em;
+    font-weight: 700;
+    line-height: 1.3;
+    color: #15140f;
+    background: linear-gradient(180deg, #ffd740, #f5c518 68%);
+    box-shadow:
+        0 2px 0 0 #a88400,
+        0 3px 5px rgba(0, 0, 0, 0.32),
+        inset 0 1px 0 rgba(255, 255, 255, 0.4);
+}
+
+/* Numbered walkthrough steps: an ordered list inside <div class="gl-steps" markdown> */
+.md-typeset .gl-steps > ol {
+    counter-reset: gl-step;
+    list-style: none;
+    margin-left: 0;
+    padding-left: 0;
+}
+.md-typeset .gl-steps > ol > li {
+    counter-increment: gl-step;
+    position: relative;
+    margin-left: 0;
+    padding: 0 0 1.1em 3em;
+}
+.md-typeset .gl-steps > ol > li::before {
+    content: counter(gl-step, decimal-leading-zero);
+    position: absolute;
+    left: 0;
+    top: -0.05em;
+    width: 2.1em;
+    height: 2.1em;
+    display: grid;
+    place-items: center;
+    border-radius: 5px;
+    background: var(--gl-yellow);
+    color: var(--gl-on-accent);
+    font-family: var(--md-code-font-family, "JetBrains Mono", monospace);
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+.md-typeset .gl-steps > ol > li:not(:last-child)::after {
+    content: "";
+    position: absolute;
+    left: 1.04em;
+    top: 2.3em;
+    bottom: 0.25em;
+    width: 2px;
+    background: linear-gradient(var(--gl-line-2), transparent);
+}
+
+/* A row of figures: a mockup beside prose on wide screens */
+.md-typeset .gl-split {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 1.6rem;
+    align-items: start;
+    margin: 1.2em 0;
+}
+.md-typeset .gl-split > .gl-figure {
+    margin: 0;
+}
+.md-typeset .gl-figure {
+    margin: 1.6em 0;
+    text-align: center;
+}
+.md-typeset .gl-figure > figcaption,
+.md-typeset .gl-caption {
+    max-width: 34rem;
+    margin: 0.9em auto 0;
+    font-size: 0.68rem;
+    line-height: 1.5;
+    color: var(--md-default-fg-color--light);
+}
+
+/* Scroll-in reveal, armed by javascripts/glyph.js (no JS: always shown) */
+.gl-js .gl-reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+.gl-js .gl-reveal.is-in {
+    opacity: 1;
+    transform: none;
+}
+
+/* ============================================================
+   LANDING PAGE (.gl) — injected by overrides/home.html
+   ============================================================ */
+.gl {
+    --gl-mono: var(--md-code-font-family, "JetBrains Mono", ui-monospace, monospace);
+    --gl-sans: var(--md-text-font-family, "Hanken Grotesk", system-ui, sans-serif);
+    --gl-r: 5px;
+
+    background: var(--gl-bg);
+    color: var(--gl-fg);
+    font-family: var(--gl-sans);
+    line-height: 1.55;
+}
+.gl * {
+    box-sizing: border-box;
+}
+.gl a {
+    text-decoration: none;
+}
+
+/* ---- HERO ---- */
+.gl-hero {
+    position: relative;
+    overflow: hidden;
+}
+.gl-hero__grid {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    opacity: 0.5;
+    background-image:
+        linear-gradient(var(--gl-line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--gl-line) 1px, transparent 1px);
+    background-size: 46px 46px;
+    -webkit-mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 72%);
+    mask-image: radial-gradient(120% 80% at 50% 0%, #000 30%, transparent 72%);
+}
+.gl-hero__glow {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background:
+        radial-gradient(820px 380px at 78% -8%, color-mix(in oklab, var(--gl-yellow) 14%, transparent), transparent),
+        radial-gradient(620px 360px at 8% 6%, color-mix(in oklab, var(--gl-amber) 8%, transparent), transparent);
+}
+/* the icon's wave, drawn huge and faint behind the hero */
+.gl-hero__wave {
+    position: absolute;
+    left: -5%;
+    right: -5%;
+    top: 90px;
+    width: 110%;
+    height: 340px;
+    pointer-events: none;
+    opacity: 0.16;
+}
+.gl-hero__wave path {
+    fill: none;
+    stroke: var(--gl-yellow);
+    stroke-width: 6;
+    stroke-linecap: round;
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: gl-draw 3.2s 0.3s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.gl-hero__inner {
+    position: relative;
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 64px 24px 40px;
+    text-align: center;
+}
+.gl-hero__icon {
+    width: 112px;
+    height: 112px;
+    margin: 0 auto 22px;
+    border-radius: 25px;
+    box-shadow:
+        0 0 0 1px var(--gl-line),
+        var(--gl-shadow);
+    animation: gl-float 6s ease-in-out infinite;
+}
+.gl-hero__icon .gl-mark__wave {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: gl-draw 1.6s 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+.gl-hero__icon .gl-mark__reading {
+    transform-origin: 512px 512px;
+    animation: gl-heartbeat 2.4s 1.6s ease-in-out infinite;
+}
+.gl-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    margin-bottom: 18px;
+    font-family: var(--gl-mono);
+    font-size: 12px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--gl-ink);
+    border: 1px solid color-mix(in oklab, var(--gl-yellow) 40%, transparent);
+    background: color-mix(in oklab, var(--gl-yellow) 9%, transparent);
+    padding: 5px 12px;
+    border-radius: 999px;
+}
+.gl-dot {
+    width: 7px;
+    height: 7px;
+    border-radius: 50%;
+    background: var(--gl-yellow);
+    animation: gl-pulse 1.6s ease-in-out infinite;
+}
+.gl-wordmark {
+    margin: 0;
+    font-family: var(--gl-sans);
+    font-weight: 800;
+    font-size: clamp(56px, 10.5vw, 112px);
+    line-height: 0.95;
+    letter-spacing: -0.045em;
+    color: var(--gl-fg);
+}
+.gl-wordmark span {
+    color: var(--gl-ink);
+}
+.gl-tagline {
+    margin: 18px auto 0;
+    max-width: 680px;
+    font-size: clamp(19px, 2.6vw, 24px);
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--gl-fg);
+}
+.gl-tagline em {
+    font-style: normal;
+    color: var(--gl-ink);
+}
+.gl-lede {
+    margin: 16px auto 0;
+    max-width: 660px;
+    font-size: 15.5px;
+    line-height: 1.65;
+    color: var(--gl-muted);
+    text-wrap: pretty;
+}
+.gl-cta {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-top: 26px;
+    flex-wrap: wrap;
+}
+.gl-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 9px;
+    font-family: var(--gl-mono);
+    font-size: 14px;
+    padding: 12px 20px;
+    border-radius: var(--gl-r);
+    border: 1px solid transparent;
+    transition:
+        background 0.15s ease,
+        border-color 0.15s ease,
+        transform 0.15s ease;
+}
+.gl-btn:hover {
+    transform: translateY(-1px);
+}
+.gl-btn--primary {
+    background: var(--gl-yellow);
+    color: var(--gl-on-accent);
+    font-weight: 700;
+}
+.gl-btn--primary:hover {
+    background: var(--gl-yellow-2);
+}
+.gl-btn--ghost {
+    background: var(--gl-surface);
+    color: var(--gl-fg);
+    border-color: var(--gl-line);
+    font-weight: 600;
+}
+.gl-btn--ghost:hover {
+    border-color: var(--gl-line-2);
+}
+.gl-btn svg {
+    width: 16px;
+    height: 16px;
+}
+.gl-notice {
+    margin: 18px auto 0;
+    max-width: 560px;
+    font-size: 12.5px;
+    color: var(--gl-muted);
+}
+.gl-notice b {
+    color: var(--gl-fg);
+}
+
+/* ---- SHOWCASE (the unfolded Duo) ---- */
+.gl-show {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 8px 24px 4px;
+}
+.gl-show__cap {
+    text-align: center;
+    font-size: 13px;
+    color: var(--gl-muted);
+    margin: 18px 2px 0;
+}
+.gl-show__cap b {
+    color: var(--gl-fg);
+    font-weight: 600;
+}
+
+.gl-show .gl-device--duo {
+    font-size: 15px;
+}
+
+/* ---- MARQUEE ---- */
+.gl-marquee {
+    overflow: hidden;
+    border-top: 1px solid var(--gl-line);
+    border-bottom: 1px solid var(--gl-line);
+    padding: 13px 0;
+    margin-top: 44px;
+    -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+    mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+.gl-marquee__track {
+    display: flex;
+    width: max-content;
+    animation: gl-marquee 34s linear infinite;
+}
+.gl-marquee__track span {
+    font-family: var(--gl-mono);
+    font-size: 12.5px;
+    color: var(--gl-muted);
+    padding: 0 22px;
+    border-right: 1px solid var(--gl-line);
+    white-space: nowrap;
+}
+
+/* ---- STATS ---- */
+.gl-stats-wrap {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 0 24px;
+}
+.gl-stats {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    border: 1px solid var(--gl-line);
+    border-top: none;
+    overflow: hidden;
+}
+.gl-stat {
+    padding: 22px 18px;
+    background: var(--gl-surface);
+}
+.gl-stat + .gl-stat {
+    border-left: 1px solid var(--gl-line);
+}
+.gl-stat b {
+    display: block;
+    font-family: var(--gl-mono);
+    font-weight: 700;
+    font-size: clamp(22px, 3vw, 30px);
+    color: var(--gl-fg);
+}
+.gl-stat small {
+    display: block;
+    font-family: var(--gl-mono);
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gl-muted);
+    margin-top: 4px;
+}
+
+/* ---- SECTIONS ---- */
+.gl-section {
+    max-width: 1120px;
+    margin: 0 auto;
+    padding: 64px 24px 0;
+}
+.gl-section--last {
+    padding-bottom: 72px;
+}
+.gl-eyebrow {
+    margin: 0;
+    font-family: var(--gl-mono);
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    color: var(--gl-muted);
+    font-weight: 500;
+}
+.gl-lead {
+    margin: 10px 0 26px;
+    font-size: clamp(22px, 3vw, 30px);
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    color: var(--gl-fg);
+    max-width: 760px;
+}
+
+/* connected feature grid */
+.gl-conn {
+    border: 1px solid var(--gl-line);
+    overflow: hidden;
+}
+.gl-grid-3 {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.gl-grid-3 > * {
+    border-left: 1px solid var(--gl-line);
+    border-top: 1px solid var(--gl-line);
+}
+.gl-grid-3 > :nth-child(3n + 1) {
+    border-left: none;
+}
+.gl-grid-3 > :nth-child(-n + 3) {
+    border-top: none;
+}
+.gl-feat {
+    padding: 22px;
+    background: var(--gl-surface);
+    transition: background 0.2s ease;
+}
+.gl-feat:hover {
+    background: color-mix(in oklab, var(--gl-surface) 92%, var(--gl-yellow));
+}
+.gl-glyph {
+    width: 38px;
+    height: 38px;
+    border-radius: var(--gl-r);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 14px;
+    color: var(--gl-on-accent);
+    transition: transform 0.25s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+.gl-feat:hover .gl-glyph {
+    transform: rotate(-6deg) scale(1.08);
+}
+.gl-glyph svg {
+    width: 19px;
+    height: 19px;
+}
+.gl-feat h3 {
+    margin: 0 0 7px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--gl-fg);
+}
+.gl-feat p {
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--gl-muted);
+    text-wrap: pretty;
+}
+.gl-feat a.gl-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--gl-ink);
+}
+
+/* the four tabs strip */
+.gl-tabs {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+    border: 1px solid var(--gl-line);
+}
+.gl-tab {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    padding: 20px;
+    background: var(--gl-surface);
+    color: var(--gl-fg);
+    overflow: hidden;
+}
+.gl-tab + .gl-tab {
+    border-left: 1px solid var(--gl-line);
+}
+.gl-tab::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    height: 2px;
+    background: var(--gl-yellow);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform 0.3s ease;
+}
+.gl-tab:hover::after {
+    transform: scaleX(1);
+}
+.gl-tab svg {
+    width: 22px;
+    height: 22px;
+    color: var(--gl-ink);
+}
+.gl-tab b {
+    font-size: 16px;
+}
+.gl-tab span {
+    font-size: 13px;
+    color: var(--gl-muted);
+    line-height: 1.5;
+}
+
+/* ---- STEPS ---- */
+.gl-steps-grid {
+    margin-top: 22px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+}
+.gl-step {
+    background: var(--gl-surface);
+    display: flex;
+    flex-direction: column;
+}
+.gl-step + .gl-step {
+    border-left: 1px solid var(--gl-line);
+}
+.gl-step__body {
+    padding: 22px 22px 16px;
+    flex: 1;
+}
+.gl-step__num {
+    font-family: var(--gl-mono);
+    font-size: 13px;
+    color: var(--gl-ink);
+    margin-bottom: 12px;
+}
+.gl-step h3 {
+    margin: 0 0 7px;
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--gl-fg);
+}
+.gl-step p {
+    margin: 0;
+    font-size: 13.5px;
+    line-height: 1.6;
+    color: var(--gl-muted);
+}
+.gl-step__alt,
+.gl-more {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    margin-top: 10px;
+    color: var(--gl-ink);
+    font-weight: 600;
+    white-space: nowrap;
+}
+.gl-step__alt svg,
+.gl-more svg {
+    width: 14px;
+    height: 14px;
+    transition: transform 0.15s ease;
+}
+.gl-step__alt:hover svg,
+.gl-more:hover svg {
+    transform: translateX(3px);
+}
+.gl-step__foot {
+    display: flex;
+    align-items: center;
+    gap: 9px;
+    padding: 11px 16px;
+    border-top: 1px solid var(--gl-line);
+    background: var(--gl-code);
+    font-family: var(--gl-mono);
+    font-size: 12px;
+    color: var(--gl-fg);
+}
+.gl-step__foot i {
+    font-style: normal;
+    color: var(--gl-ink);
+}
+
+/* developer strip on the landing */
+.gl-dev {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+.gl-term {
+    overflow: hidden;
+    text-align: left;
+    background: var(--gl-code-2);
+    border: 1px solid var(--gl-line);
+    border-radius: 6px;
+}
+.gl-term__bar {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 9px 14px;
+    border-bottom: 1px solid var(--gl-line);
+    font-family: var(--gl-mono);
+    font-size: 11px;
+    color: var(--gl-muted);
+}
+.gl-dots {
+    display: flex;
+    gap: 6px;
+}
+.gl-dots i {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+}
+.gl-dots i:nth-child(1) {
+    background: var(--gl-amber);
+}
+.gl-dots i:nth-child(2) {
+    background: var(--gl-yellow);
+}
+.gl-dots i:nth-child(3) {
+    background: var(--gl-yellow-2);
+}
+.gl-term__body {
+    padding: 10px 0;
+}
+.gl-cmdrow {
+    display: flex;
+    gap: 14px;
+    padding: 5px 16px;
+    flex-wrap: wrap;
+    font-family: var(--gl-mono);
+    font-size: 12.5px;
+}
+.gl-cmdrow code {
+    color: var(--gl-fg);
+    background: none;
+    min-width: 190px;
+}
+.gl-cmdrow code i {
+    font-style: normal;
+    color: var(--gl-ink);
+}
+.gl-cmdrow span {
+    color: var(--gl-muted);
+    font-size: 12px;
+    flex: 1;
+}
+.gl-dev__text p {
+    margin: 0 0 12px;
+    font-size: 14.5px;
+    color: var(--gl-muted);
+    line-height: 1.65;
+}
+.gl-dev__text p b {
+    color: var(--gl-fg);
+}
+.gl-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0 6px;
+}
+.gl-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 7px;
+    font-family: var(--gl-mono);
+    font-size: 12.5px;
+    color: var(--gl-fg);
+    background: var(--gl-surface);
+    border: 1px solid var(--gl-line);
+    border-radius: 3px;
+    padding: 5px 10px;
+}
+.gl-chip::before {
+    content: "";
+    width: 6px;
+    height: 6px;
+    border-radius: 50%;
+    background: var(--chip, var(--gl-yellow));
+}
+
+/* drop the empty article the landing leaves behind */
+body:has(.gl) .md-content {
+    display: none;
+}
+body:has(.gl) .md-main__inner {
+    margin-top: 0;
+}
+
+/* ============================================================
+   APP MOCKUPS (.gl-device) — the app drawn in HTML/CSS
+   A phone (.gl-device) or an unfolded iPhone Duo (.gl-device--duo)
+   holds one or two screens (.gl-screen). Inside: iOS-style cards
+   (.gl-ui-card), the big value, charts and rows. Sizes are in em off
+   the device's font-size, so one knob scales the whole mockup.
+   ============================================================ */
+.gl-device {
+    --gl-dev-w: 15.5em;
+    position: relative;
+    display: inline-flex;
+    gap: 0;
+    padding: 0.55em;
+    font-size: 13px;
+    border-radius: 2.6em;
+    background: var(--gl-bezel);
+    box-shadow:
+        inset 0 0 0 1.5px var(--gl-bezel-edge),
+        var(--gl-shadow-strong);
+    text-align: left;
+    vertical-align: top;
+    line-height: 1.3;
+    font-family: -apple-system, "SF Pro Text", system-ui, "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+.gl-device--sm {
+    font-size: 11px;
+}
+.gl-screen {
+    position: relative;
+    width: var(--gl-dev-w);
+    aspect-ratio: 9 / 19.5;
+    overflow: hidden;
+    border-radius: 2.1em;
+    background: var(--gl-ios-bg);
+    color: var(--gl-ios-fg);
+    display: flex;
+    flex-direction: column;
+}
+/* the unfolded Duo: two near-square halves either side of the hinge */
+.gl-device--duo {
+    --gl-dev-w: 17em;
+    border-radius: 2.2em;
+}
+.gl-device--duo .gl-screen {
+    aspect-ratio: 0.82;
+    border-radius: 1.7em 0.2em 0.2em 1.7em;
+}
+/* the right screen comes after the hinge, so match it as the last child */
+.gl-device--duo .gl-screen:last-child {
+    border-radius: 0.2em 1.7em 1.7em 0.2em;
+}
+.gl-device--duo .gl-screen:last-child::before {
+    /* the crease */
+    content: "";
+    position: absolute;
+    left: 0;
+    top: 0;
+    bottom: 0;
+    width: 1px;
+    background: linear-gradient(transparent, rgba(255, 255, 255, 0.18) 20%, rgba(255, 255, 255, 0.18) 80%, transparent);
+    z-index: 3;
+}
+.gl-hinge {
+    width: 0.35em;
+    background: linear-gradient(90deg, var(--gl-bezel), var(--gl-bezel-edge), var(--gl-bezel));
+}
+
+/* status bar + dynamic island */
+.gl-status {
+    flex: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 2.9em;
+    padding: 0.4em 1.6em 0;
+    font-size: 0.82em;
+    font-weight: 600;
+}
+.gl-status i {
+    font-style: normal;
+    letter-spacing: 0.08em;
+}
+.gl-island {
+    position: absolute;
+    left: 50%;
+    top: 0.75em;
+    transform: translateX(-50%);
+    width: 6.6em;
+    height: 1.85em;
+    border-radius: 1em;
+    background: #000;
+    z-index: 4;
+}
+.gl-device--duo .gl-status {
+    height: 2.2em;
+}
+.gl-navtitle {
+    flex: none;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.95em;
+    padding: 0.1em 0 0.5em;
+}
+.gl-navtitle--large {
+    text-align: left;
+    font-size: 1.85em;
+    font-weight: 700;
+    padding: 0.1em 0.55em 0.3em;
+}
+.gl-body {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+    padding: 0 0.75em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.6em;
+}
+/* the tab bar: a Liquid Glass capsule floating over the content */
+.gl-tabbar {
+    position: absolute;
+    left: 0.9em;
+    right: 0.9em;
+    bottom: 1.6em;
+    display: flex;
+    justify-content: space-around;
+    padding: 0.4em 0.3em;
+    border-radius: 2em;
+    background: var(--gl-ios-bar);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+    box-shadow:
+        0 0.3em 1.2em rgba(0, 0, 0, 0.18),
+        inset 0 0 0 0.5px var(--gl-ios-sep);
+    z-index: 5;
+}
+.gl-tabbar span {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.15em;
+    padding: 0.25em 0.6em;
+    border-radius: 1.4em;
+    font-size: 0.66em;
+    font-weight: 600;
+    color: var(--gl-ios-fg);
+}
+.gl-tabbar span svg {
+    width: 1.9em;
+    height: 1.9em;
+}
+.gl-tabbar span.is-on {
+    color: var(--gl-ios-tint);
+    background: var(--gl-ios-fill);
+}
+/* unfolded in landscape the system stacks the tabs in a vertical bar at the
+   bottom of the trailing edge (toolbarVerticalEdge) */
+.gl-tabbar--v {
+    left: auto;
+    right: 0.5em;
+    top: auto;
+    bottom: 0.9em;
+    flex-direction: column;
+    gap: 0.2em;
+    padding: 0.3em;
+}
+.gl-tabbar--v span {
+    padding: 0.45em;
+}
+.gl-tabbar--v ~ .gl-body,
+.gl-body:has(~ .gl-tabbar--v) {
+    padding-right: 3.6em;
+}
+.gl-homebar {
+    position: absolute;
+    left: 50%;
+    bottom: 0.45em;
+    transform: translateX(-50%);
+    width: 35%;
+    height: 0.3em;
+    border-radius: 1em;
+    background: var(--gl-ios-fg);
+    opacity: 0.85;
+    z-index: 5;
+}
+
+/* cards (GroupBox-like) */
+.gl-ui-card {
+    flex: none;
+    background: var(--gl-ios-card);
+    border-radius: 1.1em;
+    padding: 0.75em 0.85em;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35em;
+}
+.gl-ui-card > h5 {
+    margin: 0;
+    text-transform: none;
+    letter-spacing: normal;
+    line-height: 1.3;
+    font-size: 0.82em;
+    font-weight: 600;
+    color: var(--gl-ios-fg);
+}
+.gl-ui-sub {
+    font-size: 0.78em;
+    color: var(--gl-ios-secondary);
+}
+.gl-ui-meta {
+    display: flex;
+    gap: 0.9em;
+    font-size: 0.8em;
+    color: var(--gl-ios-secondary);
+}
+.gl-ui-warn {
+    font-size: 0.8em;
+    font-weight: 600;
+    color: var(--gl-ios-orange);
+}
+
+/* the big value */
+.gl-value {
+    display: flex;
+    align-items: center;
+    gap: 0.3em;
+    font-family: ui-rounded, "SF Pro Rounded", -apple-system, system-ui, sans-serif;
+    font-weight: 700;
+    font-size: 3.1em;
+    line-height: 1;
+    font-variant-numeric: tabular-nums;
+    letter-spacing: -0.02em;
+    color: var(--gl-ios-green);
+    transition: color 0.6s ease;
+}
+.gl-value small {
+    font-size: 0.3em;
+    font-weight: 600;
+    color: var(--gl-ios-secondary);
+    align-self: flex-end;
+    margin-bottom: 0.45em;
+    letter-spacing: 0;
+}
+.gl-value .gl-arrow {
+    display: inline-block;
+    width: 0.62em;
+    height: 0.62em;
+    transition: transform 0.6s cubic-bezier(0.3, 1.4, 0.5, 1);
+}
+.gl-value[data-level="low"],
+.gl-value[data-level="urgentLow"] {
+    color: var(--gl-ios-orange);
+}
+.gl-value[data-level="urgentLow"] {
+    color: var(--gl-ios-red);
+}
+.gl-value[data-level="high"] {
+    color: var(--gl-ios-yellow);
+}
+.gl-value.is-stale {
+    color: var(--gl-ios-secondary);
+    text-decoration: line-through;
+    text-decoration-thickness: 0.06em;
+}
+.gl-value.is-tick {
+    animation: gl-tick 0.6s ease;
+}
+
+/* a chart: an SVG with a target band, threshold rules and the line */
+.gl-chart {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 2;
+}
+.gl-chart--tall {
+    aspect-ratio: 1.6;
+}
+.gl-chart svg {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+}
+.gl-chart .band {
+    fill: var(--gl-ios-green);
+    opacity: 0.13;
+}
+.gl-chart .rule {
+    stroke: var(--gl-ios-sep);
+    stroke-width: 0.6;
+    stroke-dasharray: 2 2;
+    vector-effect: non-scaling-stroke;
+}
+.gl-chart .rule--low {
+    stroke: var(--gl-ios-orange);
+    opacity: 0.7;
+}
+.gl-chart .rule--high {
+    stroke: var(--gl-ios-yellow);
+    opacity: 0.7;
+}
+.gl-chart .line {
+    fill: none;
+    stroke: var(--gl-ios-tint);
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    vector-effect: non-scaling-stroke;
+}
+.gl-chart .line--draw {
+    stroke-dasharray: 1;
+    stroke-dashoffset: 1;
+    animation: gl-draw 2.4s 0.3s ease-out forwards;
+}
+.gl-chart .now {
+    fill: var(--gl-ios-tint);
+    stroke: var(--gl-ios-card);
+    stroke-width: 1.5;
+    vector-effect: non-scaling-stroke;
+}
+.gl-chart .p95 {
+    fill: var(--gl-ios-tint);
+    opacity: 0.14;
+}
+.gl-chart .p75 {
+    fill: var(--gl-ios-tint);
+    opacity: 0.28;
+}
+.gl-chart .axis {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: -1.3em;
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.62em;
+    color: var(--gl-ios-secondary);
+}
+/* the scrub cursor and its callout (History) */
+.gl-scrub {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 20%;
+    width: 0;
+    border-left: 1px solid var(--gl-ios-secondary);
+    animation: gl-scrub 7s ease-in-out infinite;
+}
+.gl-scrub b {
+    position: absolute;
+    top: -0.2em;
+    left: 0;
+    transform: translate(-50%, -100%);
+    padding: 0.25em 0.5em;
+    border-radius: 0.6em;
+    background: var(--gl-ios-card-2);
+    font-size: 0.7em;
+    white-space: nowrap;
+    font-weight: 600;
+}
+
+/* range bar */
+.gl-range {
+    display: flex;
+    height: 0.6em;
+    border-radius: 1em;
+    overflow: hidden;
+    margin-top: 0.2em;
+}
+.gl-range i {
+    display: block;
+    height: 100%;
+    transform-origin: left;
+}
+.gl-js .gl-range.is-in i {
+    animation: gl-grow 1s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+.gl-range i:nth-child(1) {
+    background: var(--gl-ios-red);
+}
+.gl-range i:nth-child(2) {
+    background: var(--gl-ios-orange);
+}
+.gl-range i:nth-child(3) {
+    background: var(--gl-ios-green);
+}
+.gl-range i:nth-child(4) {
+    background: var(--gl-ios-yellow);
+}
+.gl-range i:nth-child(5) {
+    background: color-mix(in oklab, var(--gl-ios-orange), var(--gl-ios-yellow));
+}
+
+/* big secondary numbers (Today / Sensor cards) */
+.gl-big {
+    font-size: 1.9em;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+    line-height: 1.05;
+}
+.gl-big small {
+    font-size: 0.5em;
+    font-weight: 600;
+    color: var(--gl-ios-secondary);
+}
+.gl-progress {
+    height: 0.3em;
+    border-radius: 1em;
+    background: var(--gl-ios-fill);
+    overflow: hidden;
+}
+.gl-progress i {
+    display: block;
+    height: 100%;
+    width: var(--p, 50%);
+    background: var(--gl-ios-tint);
+    border-radius: 1em;
+}
+
+/* list rows (Recent readings, Settings) */
+.gl-rows {
+    display: flex;
+    flex-direction: column;
+}
+.gl-rows > div {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 0.6em;
+    padding: 0.42em 0;
+    font-size: 0.85em;
+    border-bottom: 0.5px solid var(--gl-ios-sep);
+}
+.gl-rows > div:last-child {
+    border-bottom: 0;
+}
+.gl-rows .k {
+    color: var(--gl-ios-secondary);
+}
+.gl-rows .v {
+    font-variant-numeric: tabular-nums;
+    font-weight: 500;
+}
+.gl-rows .v.in {
+    color: var(--gl-ios-green);
+}
+.gl-rows .v.hi {
+    color: var(--gl-ios-yellow);
+}
+.gl-rows .v.lo {
+    color: var(--gl-ios-orange);
+}
+.gl-rows .new {
+    animation: gl-row-in 0.6s ease both;
+}
+
+/* segmented control */
+.gl-seg {
+    flex: none;
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    padding: 0.18em;
+    border-radius: 2em;
+    background: var(--gl-ios-fill);
+    font-size: 0.78em;
+    font-weight: 600;
+    text-align: center;
+}
+.gl-seg span {
+    padding: 0.35em 0;
+    border-radius: 2em;
+}
+.gl-seg span.is-on {
+    background: var(--gl-ios-card);
+    box-shadow: 0 0.1em 0.4em rgba(0, 0, 0, 0.12);
+}
+
+/* buttons inside the app */
+.gl-ui-btns {
+    display: flex;
+    gap: 0.5em;
+}
+.gl-ui-btn {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.35em;
+    padding: 0.65em 0.8em;
+    border-radius: 2em;
+    background: var(--gl-ios-tint);
+    color: #fff;
+    font-weight: 600;
+    font-size: 0.85em;
+}
+.gl-ui-btn--plain {
+    flex: none;
+    background: var(--gl-ios-fill);
+    color: var(--gl-ios-red);
+}
+.gl-ui-btn svg {
+    width: 1.2em;
+    height: 1.2em;
+}
+.gl-ui-status {
+    display: flex;
+    align-items: center;
+    gap: 0.35em;
+    font-size: 1.25em;
+    font-weight: 700;
+    color: var(--gl-ios-green);
+}
+.gl-ui-status svg {
+    width: 1.1em;
+    height: 1.1em;
+}
+
+/* settings form (inset grouped list) */
+.gl-form {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+}
+.gl-form h6 {
+    margin: 0.7em 0 0.25em 0.9em;
+    font-size: 0.7em;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.02em;
+    color: var(--gl-ios-secondary);
+}
+.gl-form .gl-rows {
+    background: var(--gl-ios-card);
+    border-radius: 0.9em;
+    padding: 0 0.85em;
+}
+.gl-form .gl-rows > div {
+    padding: 0.6em 0;
+}
+.gl-switch {
+    flex: none;
+    position: relative;
+    width: 2.6em;
+    height: 1.55em;
+    border-radius: 1em;
+    background: var(--gl-ios-fill);
+    transition: background 0.3s ease;
+}
+.gl-switch::after {
+    content: "";
+    position: absolute;
+    top: 0.15em;
+    left: 0.15em;
+    width: 1.25em;
+    height: 1.25em;
+    border-radius: 50%;
+    background: #fff;
+    box-shadow: 0 0.1em 0.3em rgba(0, 0, 0, 0.25);
+    transition: transform 0.3s cubic-bezier(0.3, 1.3, 0.5, 1);
+}
+.gl-switch.is-on {
+    background: var(--gl-ios-green);
+}
+.gl-switch.is-on::after {
+    transform: translateX(1.05em);
+}
+.gl-stepper {
+    flex: none;
+    display: inline-flex;
+    border-radius: 0.5em;
+    background: var(--gl-ios-fill);
+    font-weight: 500;
+}
+.gl-stepper i {
+    font-style: normal;
+    padding: 0.05em 0.6em;
+}
+.gl-stepper i + i {
+    border-left: 0.5px solid var(--gl-ios-sep);
+}
+.gl-chev {
+    color: var(--gl-ios-secondary);
+}
+.gl-form .gl-foot {
+    margin: 0.2em 0.9em 0;
+    font-size: 0.68em;
+    color: var(--gl-ios-secondary);
+    line-height: 1.35;
+}
+
+/* interactive settings mockup: the alert rows open when switched on */
+.gl-collapse {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.4s ease;
+}
+.gl-collapse > div {
+    overflow: hidden;
+}
+.gl-collapse.is-open {
+    grid-template-rows: 1fr;
+}
+[data-gl-toggle] {
+    cursor: pointer;
+}
+
+/* ============================================================
+   ANIMATED FIGURES
+   ============================================================ */
+
+/* ---- NFC pairing: the phone dips to the sensor, the field ripples ---- */
+.gl-scan {
+    position: relative;
+    width: min(100%, 30rem);
+    height: 17rem;
+    margin: 0 auto;
+    border: 1px solid var(--gl-line);
+    border-radius: 8px;
+    background:
+        radial-gradient(circle at 50% 100%, color-mix(in oklab, var(--gl-yellow) 10%, transparent), transparent 60%),
+        var(--gl-surface);
+    overflow: hidden;
+}
+.gl-scan__arm {
+    /* a stylised upper arm with the sensor on its back, seen from below */
+    position: absolute;
+    left: -10%;
+    right: -10%;
+    top: -5.5rem;
+    height: 9rem;
+    border-radius: 50%;
+    background: color-mix(in oklab, var(--gl-butter) 45%, var(--gl-surface));
+    box-shadow: inset 0 -0.6rem 1.4rem rgba(0, 0, 0, 0.08);
+}
+.gl-scan__sensor {
+    position: absolute;
+    left: 50%;
+    top: 1.6rem;
+    width: 4.2rem;
+    height: 4.2rem;
+    transform: translateX(-50%);
+    border-radius: 50%;
+    background: radial-gradient(circle, #fffdf7 0 55%, #e6decb 56% 100%);
+    box-shadow: 0 0.3rem 0.8rem rgba(0, 0, 0, 0.18);
+}
+.gl-scan__sensor::after {
+    content: "";
+    position: absolute;
+    inset: 44%;
+    border-radius: 50%;
+    background: #211e14;
+}
+.gl-scan__ripple {
+    position: absolute;
+    left: 50%;
+    top: 3.7rem;
+    width: 2rem;
+    height: 2rem;
+    margin-left: -1rem;
+    margin-top: -1rem;
+    border-radius: 50%;
+    border: 2px solid var(--gl-yellow);
+    opacity: 0;
+    animation: gl-ripple 4.8s ease-out infinite;
+}
+.gl-scan__ripple:nth-of-type(2) {
+    animation-delay: 0.35s;
+}
+.gl-scan__ripple:nth-of-type(3) {
+    animation-delay: 0.7s;
+}
+.gl-scan__phone {
+    position: absolute;
+    left: 50%;
+    top: 8.6rem;
+    width: 5.4rem;
+    height: 10.4rem;
+    margin-left: -2.7rem;
+    border-radius: 1.1rem;
+    background: var(--gl-bezel);
+    box-shadow:
+        inset 0 0 0 1.5px var(--gl-bezel-edge),
+        var(--gl-shadow);
+    animation: gl-dip 4.8s cubic-bezier(0.5, 0, 0.3, 1) infinite;
+    transform-origin: 50% 0;
+    z-index: 1;
+}
+.gl-scan__phone::before {
+    /* the NFC antenna sits at the top edge: mark it */
+    content: "";
+    position: absolute;
+    left: 50%;
+    top: -0.55rem;
+    width: 1.6rem;
+    height: 0.3rem;
+    margin-left: -0.8rem;
+    border-radius: 1rem;
+    background: var(--gl-yellow);
+    opacity: 0;
+    animation: gl-nfc 4.8s ease infinite;
+}
+.gl-scan__screen {
+    position: absolute;
+    inset: 0.3rem;
+    border-radius: 0.85rem;
+    background: var(--gl-ios-bg);
+    color: var(--gl-ios-fg);
+    font-family: -apple-system, system-ui, sans-serif;
+    font-size: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.4rem;
+    text-align: center;
+    padding: 0.4rem;
+}
+.gl-scan__sheet {
+    /* iOS puts the scan sheet at the bottom; here it sits high, in view */
+    position: absolute;
+    left: 0.25rem;
+    right: 0.25rem;
+    top: 1.3rem;
+    padding: 0.5rem 0.35rem;
+    border-radius: 0.7rem;
+    background: var(--gl-ios-card);
+    display: grid;
+    place-items: center;
+    gap: 0.25rem;
+    font-weight: 600;
+}
+.gl-scan__msg {
+    grid-area: 2 / 1;
+}
+.gl-scan__msg--hold {
+    animation: gl-msg-a 4.8s infinite;
+}
+.gl-scan__msg--done {
+    color: var(--gl-ios-green);
+    animation: gl-msg-b 4.8s infinite;
+}
+.gl-scan__glyph {
+    width: 1.3rem;
+    height: 1.3rem;
+    color: var(--gl-ios-tint);
+}
+.gl-scan__label {
+    position: absolute;
+    left: 0.9rem;
+    bottom: 0.8rem;
+    z-index: 2;
+    font-family: var(--md-code-font-family, monospace);
+    font-size: 0.6rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--gl-muted);
+}
+
+/* ---- Sensor lifecycle stepper: the active phase walks along ---- */
+.gl-life {
+    --n: 5;
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(var(--n), 1fr);
+    gap: 0;
+    margin: 1.6em 0;
+    padding: 1.2em 0.4em 0.4em;
+    border: 1px solid var(--gl-line);
+    border-radius: 8px;
+    background: var(--gl-surface);
+}
+.gl-life::before {
+    content: "";
+    position: absolute;
+    left: calc(100% / var(--n) / 2);
+    right: calc(100% / var(--n) / 2);
+    top: 2.3em;
+    height: 2px;
+    background: var(--gl-line-2);
+}
+.gl-life::after {
+    content: "";
+    position: absolute;
+    left: calc(100% / var(--n) / 2);
+    top: 2.3em;
+    height: 2px;
+    width: calc((100% - 100% / var(--n)) * var(--p, 1));
+    background: linear-gradient(90deg, var(--gl-amber), var(--gl-yellow));
+    transition: width 1.4s cubic-bezier(0.5, 0, 0.3, 1);
+}
+.gl-life__step {
+    position: relative;
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    gap: 0.35em;
+    padding: 0 0.3em;
+}
+.gl-life__dot {
+    width: 2.3em;
+    height: 2.3em;
+    display: grid;
+    place-items: center;
+    border-radius: 50%;
+    background: var(--gl-bg);
+    border: 2px solid var(--gl-line-2);
+    color: var(--gl-muted);
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        color 0.3s ease,
+        transform 0.3s cubic-bezier(0.3, 1.6, 0.5, 1);
+}
+/* no JS, or once a step is reached: lit */
+.gl-life:not([data-step]) .gl-life__dot,
+.gl-life__step.is-on .gl-life__dot {
+    border-color: var(--gl-yellow);
+    background: var(--gl-yellow);
+    color: var(--gl-on-accent);
+}
+.gl-life__step.is-now .gl-life__dot {
+    transform: scale(1.18);
+    box-shadow: 0 0 0 6px color-mix(in oklab, var(--gl-yellow) 22%, transparent);
+}
+.gl-life__dot svg {
+    width: 1.1em;
+    height: 1.1em;
+}
+.gl-life__step b {
+    font-size: 0.72rem;
+    color: var(--md-default-fg-color);
+}
+.gl-life__step span {
+    font-size: 0.62rem;
+    line-height: 1.35;
+    color: var(--md-default-fg-color--light);
+}
+
+/* ---- The reading pipeline: a reading travels through six stages ---- */
+.gl-flow {
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    margin: 1.6em 0;
+    border: 1px solid var(--gl-line);
+    border-radius: 8px;
+    overflow: hidden;
+    background: var(--gl-surface);
+}
+.gl-flow > div {
+    position: relative;
+    padding: 0.9em 0.6em 0.8em;
+    text-align: center;
+    font-size: 0.64rem;
+    color: var(--md-default-fg-color--light);
+}
+.gl-flow > div + div {
+    border-left: 1px solid var(--gl-line);
+}
+.gl-flow > div b {
+    display: block;
+    margin-bottom: 0.15em;
+    font-size: 0.74rem;
+    color: var(--md-default-fg-color);
+}
+.gl-flow > div em {
+    display: block;
+    margin: 0 auto 0.5em;
+    width: 1.8em;
+    height: 1.8em;
+    line-height: 1.8em;
+    border-radius: 5px;
+    font-style: normal;
+    font-family: var(--md-code-font-family, monospace);
+    font-weight: 700;
+    background: var(--gl-ic-bg);
+    color: var(--gl-ink);
+    animation: gl-flow-step 6s infinite;
+    animation-delay: calc(var(--i) * 0.72s);
+}
+.gl-flow__pulse {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 2px;
+    width: calc(100% / 6);
+    background: var(--gl-yellow);
+    box-shadow: 0 0 12px var(--gl-yellow);
+    animation: gl-flow-pulse 6s cubic-bezier(0.6, 0, 0.4, 1) infinite;
+}
+
+/* ---- A notification sliding onto the Lock Screen ---- */
+.gl-lock {
+    background:
+        radial-gradient(120% 70% at 30% 0%, color-mix(in oklab, var(--gl-amber) 45%, #1a1408), transparent),
+        linear-gradient(170deg, #2a2210, #0e0c07);
+    color: #fff;
+}
+.gl-lock__time {
+    margin-top: 0.4em;
+    text-align: center;
+    font-size: 3.6em;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    line-height: 1;
+}
+.gl-lock__date {
+    text-align: center;
+    font-size: 0.85em;
+    font-weight: 600;
+    opacity: 0.85;
+}
+.gl-notif {
+    margin: 0 0.6em;
+    padding: 0.65em 0.75em;
+    border-radius: 1.2em;
+    background: rgba(245, 245, 245, 0.82);
+    color: #000;
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 0.15em 0.55em;
+    align-items: center;
+    font-size: 0.82em;
+    box-shadow: 0 0.4em 1.2em rgba(0, 0, 0, 0.3);
+}
+[data-md-color-scheme="slate"] .gl-notif {
+    background: rgba(40, 40, 40, 0.82);
+    color: #fff;
+}
+.gl-notif .gl-mark {
+    grid-row: span 2;
+    width: 2.3em;
+    height: 2.3em;
+    border-radius: 0.55em;
+}
+.gl-notif b {
+    font-weight: 600;
+}
+.gl-notif small {
+    font-size: 0.85em;
+    opacity: 0.6;
+    justify-self: end;
+}
+.gl-notif p {
+    margin: 0;
+    grid-column: 2 / 4;
+}
+.gl-notif__tag {
+    grid-column: 1 / -1;
+    font-size: 0.75em;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--gl-ios-red);
+}
+.gl-notif--in {
+    animation: gl-notif 6s cubic-bezier(0.3, 1.2, 0.5, 1) infinite;
+}
+.gl-notif--in-2 {
+    animation: gl-notif 6s 0.25s cubic-bezier(0.3, 1.2, 0.5, 1) infinite;
+}
+.gl-notif__action {
+    margin: 0.35em 0.6em 0;
+    padding: 0.55em 0.75em;
+    border-radius: 1em;
+    background: rgba(245, 245, 245, 0.82);
+    color: #000;
+    font-size: 0.82em;
+    font-weight: 500;
+    animation: gl-snooze 6s infinite;
+}
+[data-md-color-scheme="slate"] .gl-notif__action {
+    background: rgba(40, 40, 40, 0.82);
+    color: #fff;
+}
+
+/* ---- Dynamic Island: compact ⇄ expanded ---- */
+.gl-di {
+    position: relative;
+    margin: 0 auto;
+    width: 16em;
+    font-size: 13px;
+    font-family: -apple-system, system-ui, sans-serif;
+}
+.gl-di__pill {
+    position: relative;
+    width: 16em;
+    height: 8.6em;
+    margin: 0 auto;
+    background: #000;
+    color: #fff;
+    border-radius: 2em;
+    overflow: hidden;
+    animation: gl-di 7s cubic-bezier(0.5, 0, 0.2, 1) infinite;
+}
+.gl-di__compact,
+.gl-di__expanded {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    padding: 0 1em;
+}
+.gl-di__compact {
+    justify-content: space-between;
+    font-weight: 700;
+    color: var(--gl-ios-green);
+    animation: gl-di-compact 7s infinite;
+}
+.gl-di__compact svg {
+    width: 1em;
+    height: 1em;
+}
+.gl-di__expanded {
+    flex-direction: column;
+    align-items: stretch;
+    justify-content: center;
+    gap: 0.4em;
+    padding: 0.9em 1.3em;
+    animation: gl-di-expanded 7s infinite;
+}
+.gl-di__row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.gl-di__row .gl-value {
+    font-size: 2.2em;
+}
+.gl-di__row small {
+    font-size: 0.75em;
+    color: rgba(235, 235, 245, 0.6);
+    text-align: right;
+}
+.gl-di__spark {
+    height: 2.4em;
+}
+.gl-di__spark path {
+    fill: none;
+    stroke: var(--gl-ios-green);
+    stroke-width: 2;
+    vector-effect: non-scaling-stroke;
+}
+
+/* ---- Widgets ---- */
+.gl-widgets {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-end;
+    gap: 1.2rem;
+    margin: 1.6em 0;
+    font-family: -apple-system, system-ui, sans-serif;
+}
+.gl-widget {
+    border-radius: 1.4rem;
+    background: var(--gl-ios-card);
+    color: var(--gl-ios-fg);
+    box-shadow:
+        0 0 0 1px var(--gl-line),
+        var(--gl-shadow);
+    padding: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+.gl-widget--s {
+    width: 8.5rem;
+    height: 8.5rem;
+}
+.gl-widget--m {
+    width: 18rem;
+    height: 8.5rem;
+    flex-direction: row;
+    gap: 0.8rem;
+}
+.gl-widget .gl-value {
+    font-size: 2.3rem;
+}
+.gl-widget small {
+    font-size: 0.68rem;
+    color: var(--gl-ios-secondary);
+}
+.gl-widget .gl-chart {
+    flex: 1;
+    aspect-ratio: auto;
+}
+.gl-acc {
+    display: flex;
+    flex-direction: column;
+    gap: 0.6rem;
+    align-items: center;
+}
+.gl-acc__circ {
+    width: 4.2rem;
+    height: 4.2rem;
+    border-radius: 50%;
+    display: grid;
+    place-items: center;
+    align-content: center;
+    background: color-mix(in oklab, var(--gl-fg) 12%, transparent);
+    color: var(--gl-fg);
+    font-weight: 700;
+    font-size: 1.05rem;
+    line-height: 1.1;
+}
+.gl-acc__circ svg {
+    width: 0.9rem;
+    height: 0.9rem;
+}
+.gl-acc__rect {
+    padding: 0.45rem 0.8rem;
+    border-radius: 0.8rem;
+    background: color-mix(in oklab, var(--gl-fg) 12%, transparent);
+    color: var(--gl-fg);
+    font-size: 0.75rem;
+    line-height: 1.3;
+}
+.gl-acc__rect b {
+    font-size: 1.2rem;
+}
+.gl-acc__inline {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: var(--gl-fg);
+}
+.gl-widgets figcaption {
+    flex-basis: 100%;
+}
+
+/* ---- The Duo, folding and unfolding ----
+   Two halves, each with its own bezel. The left half swings round the
+   hinge (backface hidden, so folded it is gone); the right half shows the
+   compact layout while folded and the secondary pane once open. */
+.gl-fold {
+    display: flex;
+    justify-content: center;
+    perspective: 1600px;
+    padding: 1em 0 0.5em;
+}
+.gl-fold__dev {
+    display: flex;
+    font-size: 13px;
+    transform-style: preserve-3d;
+    text-align: left;
+    line-height: 1.3;
+    font-family: -apple-system, "SF Pro Text", system-ui, "Helvetica Neue", sans-serif;
+    -webkit-font-smoothing: antialiased;
+}
+.gl-half {
+    --gl-dev-w: 15em;
+    padding: 0.55em;
+    background: var(--gl-bezel);
+    box-shadow: inset 0 0 0 1.5px var(--gl-bezel-edge);
+}
+.gl-half .gl-screen {
+    aspect-ratio: 0.72;
+}
+.gl-half--left {
+    border-radius: 2.2em 0 0 2.2em;
+    transform-origin: right center;
+    backface-visibility: hidden;
+    -webkit-backface-visibility: hidden;
+    animation: gl-unfold 9s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+.gl-half--left .gl-screen {
+    border-radius: 1.7em 0.2em 0.2em 1.7em;
+}
+.gl-half--right {
+    border-radius: 0 2.2em 2.2em 0;
+    box-shadow:
+        inset 0 0 0 1.5px var(--gl-bezel-edge),
+        var(--gl-shadow-strong);
+    animation: gl-right-corners 9s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+.gl-half--right .gl-screen {
+    border-radius: 0.2em 1.7em 1.7em 0.2em;
+    animation: gl-right-screen 9s cubic-bezier(0.6, 0, 0.3, 1) infinite;
+}
+.gl-fold__layer {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    flex-direction: column;
+}
+.gl-fold__solo {
+    animation: gl-solo 9s infinite;
+}
+.gl-fold__duo {
+    animation: gl-duo 9s infinite;
+}
+.gl-fold__badge {
+    display: flex;
+    justify-content: center;
+    gap: 0.6rem;
+    margin-top: 0.4rem;
+    font-family: var(--md-code-font-family, monospace);
+    font-size: 0.62rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--md-default-fg-color--light);
+}
+.gl-fold__badge span {
+    padding: 0.2em 0.7em;
+    border-radius: 1em;
+    border: 1px solid var(--gl-line);
+}
+.gl-fold__badge span:first-child {
+    animation: gl-solo-badge 9s infinite;
+}
+.gl-fold__badge span:last-child {
+    animation: gl-duo-badge 9s infinite;
+}
+
+/* small inline icons in prose (tab icons etc.) */
+.md-typeset .gl-ico {
+    display: inline-block;
+    width: 1.1em;
+    height: 1.1em;
+    vertical-align: -0.18em;
+    color: var(--gl-ink);
+}
+
+/* ============================================================
+   KEYFRAMES
+   ============================================================ */
+@keyframes gl-draw {
+    to {
+        stroke-dashoffset: 0;
+    }
+}
+@keyframes gl-float {
+    0%,
+    100% {
+        transform: translateY(0) rotate(0);
+    }
+    50% {
+        transform: translateY(-6px) rotate(-1.5deg);
+    }
+}
+@keyframes gl-heartbeat {
+    0%,
+    40%,
+    100% {
+        transform: scale(1);
+    }
+    10% {
+        transform: scale(1.35);
+    }
+    20% {
+        transform: scale(0.95);
+    }
+    30% {
+        transform: scale(1.18);
+    }
+}
+@keyframes gl-wave-shimmer {
+    50% {
+        filter: drop-shadow(0 0 30px var(--gl-icon-wave-1));
+    }
+}
+@keyframes gl-pulse {
+    0%,
+    100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.35;
+    }
+}
+@keyframes gl-marquee {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+@keyframes gl-tick {
+    0% {
+        transform: translateY(0);
+        opacity: 1;
+    }
+    35% {
+        transform: translateY(-0.12em);
+        opacity: 0.2;
+    }
+    65% {
+        transform: translateY(0.08em);
+        opacity: 0.6;
+    }
+    100% {
+        transform: none;
+        opacity: 1;
+    }
+}
+@keyframes gl-row-in {
+    from {
+        opacity: 0;
+        transform: translateY(-0.6em);
+    }
+}
+@keyframes gl-grow {
+    from {
+        transform: scaleX(0);
+    }
+}
+@keyframes gl-scrub {
+    0%,
+    10% {
+        left: 18%;
+        opacity: 0;
+    }
+    15% {
+        opacity: 1;
+    }
+    50% {
+        left: 72%;
+    }
+    80% {
+        left: 44%;
+        opacity: 1;
+    }
+    90%,
+    100% {
+        left: 44%;
+        opacity: 0;
+    }
+}
+@keyframes gl-dip {
+    0%,
+    8% {
+        transform: translateY(0.8rem) rotate(4deg);
+    }
+    30%,
+    62% {
+        transform: translateY(-1.9rem) rotate(0);
+    }
+    85%,
+    100% {
+        transform: translateY(0.8rem) rotate(4deg);
+    }
+}
+@keyframes gl-nfc {
+    0%,
+    26% {
+        opacity: 0;
+    }
+    30%,
+    58% {
+        opacity: 1;
+    }
+    64%,
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes gl-ripple {
+    0%,
+    30% {
+        transform: scale(0.6);
+        opacity: 0;
+    }
+    34% {
+        opacity: 0.9;
+    }
+    58% {
+        transform: scale(5.5);
+        opacity: 0;
+    }
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes gl-msg-a {
+    0%,
+    54% {
+        opacity: 1;
+    }
+    58%,
+    96% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes gl-msg-b {
+    0%,
+    54% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    60%,
+    92% {
+        opacity: 1;
+        transform: none;
+    }
+    98%,
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes gl-flow-pulse {
+    0% {
+        transform: translateX(0);
+        opacity: 1;
+    }
+    60% {
+        transform: translateX(500%);
+        opacity: 1;
+    }
+    70%,
+    100% {
+        transform: translateX(500%);
+        opacity: 0;
+    }
+}
+@keyframes gl-flow-step {
+    0%,
+    100% {
+        background: var(--gl-ic-bg);
+        color: var(--gl-ink);
+        transform: none;
+    }
+    4% {
+        background: var(--gl-yellow);
+        color: var(--gl-on-accent);
+        transform: scale(1.15);
+    }
+    14% {
+        background: var(--gl-yellow);
+        color: var(--gl-on-accent);
+        transform: none;
+    }
+    24% {
+        background: var(--gl-ic-bg);
+        color: var(--gl-ink);
+    }
+}
+@keyframes gl-notif {
+    0%,
+    6% {
+        transform: translateY(-160%) scale(0.95);
+        opacity: 0;
+    }
+    14%,
+    84% {
+        transform: none;
+        opacity: 1;
+    }
+    94%,
+    100% {
+        transform: translateY(-160%) scale(0.95);
+        opacity: 0;
+    }
+}
+@keyframes gl-snooze {
+    0%,
+    40% {
+        opacity: 0;
+        transform: translateY(-0.6em);
+    }
+    48%,
+    84% {
+        opacity: 1;
+        transform: none;
+    }
+    94%,
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes gl-di {
+    0%,
+    30% {
+        width: 9.5em;
+        height: 2.3em;
+        border-radius: 2em;
+    }
+    42%,
+    82% {
+        width: 16em;
+        height: 8.6em;
+        border-radius: 2.6em;
+    }
+    94%,
+    100% {
+        width: 9.5em;
+        height: 2.3em;
+        border-radius: 2em;
+    }
+}
+@keyframes gl-di-compact {
+    0%,
+    30% {
+        opacity: 1;
+    }
+    34%,
+    90% {
+        opacity: 0;
+    }
+    96%,
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes gl-di-expanded {
+    0%,
+    38% {
+        opacity: 0;
+    }
+    46%,
+    80% {
+        opacity: 1;
+    }
+    86%,
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes gl-unfold {
+    0%,
+    14% {
+        transform: rotateY(-179deg);
+    }
+    40%,
+    80% {
+        transform: rotateY(0);
+    }
+    100% {
+        transform: rotateY(-179deg);
+    }
+}
+@keyframes gl-right-corners {
+    0%,
+    14% {
+        border-radius: 2.2em;
+    }
+    22%,
+    92% {
+        border-radius: 0 2.2em 2.2em 0;
+    }
+    100% {
+        border-radius: 2.2em;
+    }
+}
+@keyframes gl-right-screen {
+    0%,
+    14% {
+        border-radius: 1.7em;
+    }
+    22%,
+    92% {
+        border-radius: 0.2em 1.7em 1.7em 0.2em;
+    }
+    100% {
+        border-radius: 1.7em;
+    }
+}
+@keyframes gl-solo {
+    0%,
+    18% {
+        opacity: 1;
+    }
+    26%,
+    86% {
+        opacity: 0;
+    }
+    96%,
+    100% {
+        opacity: 1;
+    }
+}
+@keyframes gl-duo {
+    0%,
+    22% {
+        opacity: 0;
+    }
+    34%,
+    82% {
+        opacity: 1;
+    }
+    90%,
+    100% {
+        opacity: 0;
+    }
+}
+@keyframes gl-solo-badge {
+    0%,
+    18%,
+    92%,
+    100% {
+        background: var(--gl-yellow);
+        color: var(--gl-on-accent);
+        border-color: var(--gl-yellow);
+    }
+    26%,
+    86% {
+        background: none;
+        color: inherit;
+        border-color: var(--gl-line);
+    }
+}
+@keyframes gl-duo-badge {
+    0%,
+    26%,
+    88%,
+    100% {
+        background: none;
+        color: inherit;
+        border-color: var(--gl-line);
+    }
+    34%,
+    82% {
+        background: var(--gl-yellow);
+        color: var(--gl-on-accent);
+        border-color: var(--gl-yellow);
+    }
+}
+
+/* Motion is decoration here: with reduced motion, every figure shows its
+   resting state (the finished drawing, the expanded island, the unfolded
+   Duo, the paired phone). */
+@media (prefers-reduced-motion: reduce) {
+    .gl *,
+    .md-typeset *,
+    .gl-headmark * {
+        animation-duration: 0.001s !important;
+        animation-iteration-count: 1 !important;
+        animation-delay: 0s !important;
+        transition: none !important;
+    }
+    .gl-marquee__track,
+    .gl-dot,
+    .gl-hero__icon,
+    .gl-hero__icon .gl-mark__reading,
+    .gl-scan__ripple,
+    .gl-scrub,
+    .gl-flow__pulse {
+        animation: none !important;
+    }
+    .gl-scan__phone {
+        animation: none !important;
+        transform: translateY(-1.9rem);
+    }
+    .gl-scan__msg--hold {
+        animation: none !important;
+        opacity: 0;
+    }
+    .gl-scan__msg--done {
+        animation: none !important;
+        opacity: 1;
+    }
+    .gl-js .gl-reveal {
+        opacity: 1;
+        transform: none;
+    }
+    .gl-half--left,
+    .gl-half--right,
+    .gl-half--right .gl-screen,
+    .gl-fold__badge span,
+    .gl-fold__solo,
+    .gl-fold__duo,
+    .gl-di__pill,
+    .gl-di__compact,
+    .gl-di__expanded,
+    .gl-notif--in,
+    .gl-notif--in-2,
+    .gl-notif__action {
+        animation: none !important;
+    }
+    .gl-fold__solo,
+    .gl-di__compact {
+        opacity: 0;
+    }
+    .gl-di__pill {
+        width: 16em;
+        height: 8.6em;
+        border-radius: 2.6em;
+    }
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 960px) {
+    .md-typeset .gl-split {
+        grid-template-columns: 1fr;
+    }
+    .md-typeset .gl-split > .gl-figure {
+        order: -1;
+    }
+}
+@media (max-width: 860px) {
+    .gl-grid-3 {
+        grid-template-columns: 1fr;
+    }
+    .gl-grid-3 > * {
+        border-left: none;
+        border-top: 1px solid var(--gl-line);
+    }
+    .gl-grid-3 > :first-child {
+        border-top: none;
+    }
+    .gl-steps-grid,
+    .gl-dev {
+        grid-template-columns: 1fr;
+    }
+    .gl-step + .gl-step {
+        border-left: none;
+        border-top: 1px solid var(--gl-line);
+    }
+    .gl-tabs {
+        grid-template-columns: 1fr 1fr;
+    }
+    .gl-tab:nth-child(3) {
+        border-left: none;
+    }
+    .gl-tab:nth-child(n + 3) {
+        border-top: 1px solid var(--gl-line);
+    }
+    .gl-flow {
+        grid-template-columns: repeat(3, 1fr);
+    }
+    .gl-flow > div:nth-child(4) {
+        border-left: none;
+    }
+    .gl-flow > div:nth-child(n + 4) {
+        border-top: 1px solid var(--gl-line);
+    }
+    .gl-flow__pulse {
+        display: none;
+    }
+}
+@media (max-width: 720px) {
+    .gl-stats {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    .gl-stat:nth-child(3) {
+        border-left: none;
+    }
+    .gl-stat:nth-child(n + 3) {
+        border-top: 1px solid var(--gl-line);
+    }
+    .gl-device--duo,
+    .gl-show .gl-device--duo,
+    .gl-fold__dev {
+        font-size: 7.4px;
+    }
+    .gl-life {
+        --n: 1;
+        grid-template-columns: 1fr;
+        gap: 0.9em;
+        padding: 1em;
+    }
+    .gl-life::before,
+    .gl-life::after {
+        display: none;
+    }
+    .gl-life__step {
+        flex-direction: row;
+        text-align: left;
+        gap: 0.8em;
+    }
+    .gl-life__dot {
+        flex: none;
+    }
+}
+@media (max-width: 420px) {
+    .gl-device--duo,
+    .gl-show .gl-device--duo,
+    .gl-fold__dev {
+        font-size: 6.2px;
+    }
+    .gl-tabs {
+        grid-template-columns: 1fr;
+    }
+    .gl-tab + .gl-tab {
+        border-left: none;
+        border-top: 1px solid var(--gl-line);
+    }
+}

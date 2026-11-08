@@ -6,8 +6,10 @@
 # Commit history; when that PR merges the workflow cuts the vX.Y.Z tag + GitHub
 # release. release-please also bumps the app's MARKETING_VERSION
 # (App/Config/Version.xcconfig, an extra-file in release-please-config.json).
-# There is no .goreleaser.yaml (the app ships through Xcode, not GoReleaser) and
-# no zensical.toml, so the goreleaser and docs jobs are skipped.
+# There is no .goreleaser.yaml (the app ships through Xcode, not GoReleaser), so
+# the goreleaser job is skipped. zensical.toml is present, so the docs job builds
+# the documentation site (`mise run docs-build`) and publishes ./site to GitHub
+# Pages, at https://oss.bitwisemedia.uk/glyph/.
 #
 # vanity-tags is left at its default (false): nothing pins this repo by a
 # floating vN tag.

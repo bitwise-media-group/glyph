@@ -10,6 +10,10 @@ DerivedData/
 # coverage (mise run test)
 coverage/
 
+# docs site (zensical build output, and the uv virtualenv it runs from)
+/site/
+/.venv/
+
 # os
 .DS_Store
 
