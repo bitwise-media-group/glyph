@@ -1,0 +1,82 @@
+# Copyright 2026 BitWise Media Group Ltd
+# SPDX-License-Identifier: MIT
+
+# Continuous integration.
+#
+# ci: thin caller for the org's reusable ci workflow. It discovers the canonical
+# tasks this repo defines (`mise tasks ls --name-only`) and runs each as its own
+# job on ubuntu-latest:
+#   lint  — swift format lint --strict (LibreKit + App), addlicense, prose,
+#           shellcheck over scripts/, actionlint + zizmor
+#   build — swift build -c release of LibreKit
+#   test  — swift test with coverage (scripts/test.sh), emitting
+#           coverage/cobertura-coverage.xml and coverage/junit.xml for Codecov
+# LibreKit is Foundation-only, so all three run on Linux.
+#
+# app: the iOS app and widget extension need Xcode, so a macOS job checks that
+# the committed Glyph.xcodeproj matches project.yml (`mise run gen` + a clean
+# diff) and builds for the iOS simulator (`mise run app-build`, unsigned). It
+# needs a runner image with Xcode 27.2 or newer (the iPhone Duo APIs are in the
+# iOS 27.1+ SDK); the version check fails early with a clear message if not.
+#
+# The reusable workflow and actions are pinned to full commit SHAs (tag in the
+# comment) so a moved tag can never change what runs; Renovate keeps the pins
+# fresh.
+name: Continuous Integration
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: ["main", "releases/*"]
+
+# the jobs only need contents:read; grant just that ceiling
+permissions:
+  contents: read
+
+jobs:
+  ci:
+    uses: bitwise-media-group/github-workflows/.github/workflows/ci.yaml@35d8e9a1ce772f67f97e73484dc5b7a50c29e0f3 # v8.1.1
+
+  app:
+    name: app-build
+    runs-on: macos-latest
+    permissions:
+      # check out the repository
+      contents: read
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false # read-only checkout; don't leave the token in .git/config
+          submodules: true # the shared toolchain, mounted at .mise/
+
+      # Only XcodeGen is installed: xcodebuild comes from the runner's Xcode,
+      # and the Swift pin is for the Linux LibreKit jobs.
+      - name: Setup mise
+        uses: jdx/mise-action@6612f0ef07ed2a736cd1e00a94a065522dd41195 # v5.2.5
+        with:
+          version: v2026.10.25
+          # sha256 of the macos-arm64 mise binary for the version above, from the
+          # release's SHASUMS256.txt
+          sha256: 8a3ef00765b009278197aba627ac00d6e9c63f6aeb04d4f4b2cfe0e59ddc2fd6
+          install_args: aqua:yonaskolb/XcodeGen
+
+      - name: Check the Xcode version
+        run: |
+          version="$(xcodebuild -version | sed -n 's/^Xcode //p')"
+          echo "Xcode $version"
+          major="${version%%.*}"
+          minor="$(printf '%s' "$version" | cut -d. -f2)"
+          if [ "$major" -lt 27 ] || { [ "$major" -eq 27 ] && [ "${minor:-0}" -lt 2 ]; }; then
+            echo "::error::Glyph needs Xcode 27.2 or newer (iPhone Duo APIs in the iOS 27.1+ SDK); this runner has Xcode $version"
+            exit 1
+          fi
+
+      - name: Check Glyph.xcodeproj matches project.yml
+        run: |
+          mise run gen
+          git diff --exit-code -- Glyph.xcodeproj
+
+      - name: Build the app for the iOS simulator
+        run: mise run app-build
