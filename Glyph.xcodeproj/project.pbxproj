@@ -1,0 +1,930 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		0CA6150D51A3CA095CCC96B6 /* SimulatedSensorSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEEF0A4A7974ABF964F4EB1 /* SimulatedSensorSource.swift */; };
+		148FEA41D5C0BAD24BB2594D /* WidgetKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC1146430BE656F85C4A45DE /* WidgetKit.framework */; };
+		14F3EF9C608BEB1B2B0F2D89 /* SensorController.swift in Sources */ = {isa = PBXBuildFile; fileRef = BF3BB6A739301FC4EAD3063C /* SensorController.swift */; };
+		1588411190BC64AE1287C22E /* LibreKit in Frameworks */ = {isa = PBXBuildFile; productRef = C07A18C7B309377D11BCC2E1 /* LibreKit */; };
+		18BB6D7F82D64AB18D15F756 /* HealthKitWriter.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F792E5C3D353F2FCD8C0FD6 /* HealthKitWriter.swift */; };
+		1A359D95020E16E7ED597E28 /* Persistence.swift in Sources */ = {isa = PBXBuildFile; fileRef = FFADF0058578A0BC53AEFF3F /* Persistence.swift */; };
+		1A764EBF74AF3B6B6645B8C9 /* SectionPanes.swift in Sources */ = {isa = PBXBuildFile; fileRef = D9D562EE0B3550C7BBE33BED /* SectionPanes.swift */; };
+		224B80AF2AD0B32EF35F86AC /* GlyphCore in Frameworks */ = {isa = PBXBuildFile; productRef = E26212F6EBE2A6DAD4F5497F /* GlyphCore */; };
+		368F134C3D1C2E2DBF004E5E /* Libre2Peripheral.swift in Sources */ = {isa = PBXBuildFile; fileRef = 01142E1F2AED16E6F5FCC9A4 /* Libre2Peripheral.swift */; };
+		4289284B39FD33DC9F11B1C5 /* GlucoseActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC6A29EF2F8E6671A54E80 /* GlucoseActivityAttributes.swift */; };
+		429A9F0422DF9CD825633599 /* GlyphCore in Frameworks */ = {isa = PBXBuildFile; productRef = 6E05738CE3FECA9FC7429D85 /* GlyphCore */; };
+		508E6EA99558BD010DF76770 /* SensorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0DCFF709B789C33931EBD88F /* SensorView.swift */; };
+		535014DB1ACAEC707D3CE416 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0F3E1206913F413B5932BED3 /* Models.swift */; };
+		57076ECDA6EBE841E86D8C65 /* AppSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = B9A63142F0B682B584B4F650 /* AppSection.swift */; };
+		5A9AC44230577A469A853086 /* AdaptiveRoot.swift in Sources */ = {isa = PBXBuildFile; fileRef = 30BE926DCDC3C853DA3729E9 /* AdaptiveRoot.swift */; };
+		5AD267E8FBB6B13E6FD2C76D /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9814CB83865A2C674C52AB /* AppGroup.swift */; };
+		5F038F2D70855E261B2DD2A0 /* ReadingPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9429ECFF89175B25F548712A /* ReadingPipeline.swift */; };
+		61E86A811E26D763E5BC5CDD /* GlyphApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E005BC20D0C077396A402F /* GlyphApp.swift */; };
+		702D57583A22C3FAF356D412 /* GlyphWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 83ADFEF8E590D25977F64081 /* GlyphWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		771821B898ED3310022867DC /* GlyphWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2616DB82CECB861A1BE5A /* GlyphWidgetsBundle.swift */; };
+		8266B413DAA33795B17919B5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A33FB4BF225FD264DE6B3FCD /* SwiftUI.framework */; };
+		8574072799ECABE93076F8C9 /* GlucoseLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85669C114D8F6754A12A176B /* GlucoseLiveActivity.swift */; };
+		8EB96237034B472ACF0165E2 /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0EFD14E49AAF651D1442FB /* ScreenshotTests.swift */; };
+		93C02FBA17212AC2E35E9D2E /* AGPChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA23B2FC844C0D4934D86D43 /* AGPChart.swift */; };
+		A289C8466804F7E8FF451914 /* ReservedRegionOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCEEE9F8F53EC089CEDF4F3 /* ReservedRegionOverlay.swift */; };
+		A924271F73B95B7267560E67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9A26EA5F9B6C2118F0FB848 /* Assets.xcassets */; };
+		A974C342DD7E078C373DD3AB /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3D466B38101975296358 /* AppSettings.swift */; };
+		ABA2C3EE60019F8BDA034FA4 /* LibreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3B8558D06FA5A17F12108EFE /* LibreKit */; };
+		BE5257490EF839C12818CD12 /* GlucoseStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40DD3AD293E010C3D842C14 /* GlucoseStyle.swift */; };
+		C005EB9EA6429CC51AD67CF0 /* AppGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1C9814CB83865A2C674C52AB /* AppGroup.swift */; };
+		C51D0366E693A77E2D5D68C3 /* NFCSensorReader.swift in Sources */ = {isa = PBXBuildFile; fileRef = F737CA8512971061676099AC /* NFCSensorReader.swift */; };
+		C62B94905874D144555A65B3 /* HistoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD277BC0B56F1BCA36F981C0 /* HistoryView.swift */; };
+		C846FB6CA283AB3B5391A23B /* GlucoseChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542431CA8212DE5F81BE3EE3 /* GlucoseChart.swift */; };
+		CEE11D37BBF6AFDF07E776F6 /* GlucoseChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 542431CA8212DE5F81BE3EE3 /* GlucoseChart.swift */; };
+		D2F134607EA2C79A79E351F6 /* SensorSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = A739E31EBA4E1BE4956EE1D6 /* SensorSource.swift */; };
+		D3753BD6FF24984B4F2B3DB7 /* AlertNotifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 98AC75D232DD43C1CCB5336A /* AlertNotifier.swift */; };
+		E59603B5049368BC8CE5A6CF /* NowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A0BC1C9DF0257F2DFBB78208 /* NowView.swift */; };
+		E9ABD6D82E3B0A9DC85F6640 /* GlucoseStyle.swift in Sources */ = {isa = PBXBuildFile; fileRef = F40DD3AD293E010C3D842C14 /* GlucoseStyle.swift */; };
+		F1391070EC4659479437CEE8 /* LaunchOptions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 43786188CDFB7F6C37769C7C /* LaunchOptions.swift */; };
+		F28977123A77FD9F801EEF1C /* LiveActivityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 83451750B09827A00EBA334A /* LiveActivityController.swift */; };
+		F3C28FD6AF08306DDF2C8412 /* GlucoseWidget.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9CDA157A667849F7E342246C /* GlucoseWidget.swift */; };
+		FAB4CEAB3A23BB0896E28B0B /* AppIcon.icon in Resources */ = {isa = PBXBuildFile; fileRef = 0F03654AD45D2B5DB4C2B43B /* AppIcon.icon */; };
+		FDB96BFBCFB2836978D26760 /* GlucoseActivityAttributes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1CC6A29EF2F8E6671A54E80 /* GlucoseActivityAttributes.swift */; };
+		FEB8A9343009B0CFBB22ACC6 /* SettingsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = DEEE68996F79FD74054596BF /* SettingsView.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		66B47995D53207AA56622E1D /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7D9785233E3185C5D28B33F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F54BF7F17AC0A13BBE1E0C12;
+			remoteInfo = Glyph;
+		};
+		F5B2976E4746DC3C3B3FE5BE /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A7D9785233E3185C5D28B33F /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = AE84086BB71595152915B240;
+			remoteInfo = GlyphWidgets;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		3DDB365D18BCE17C74A020F5 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				702D57583A22C3FAF356D412 /* GlyphWidgets.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
+/* Begin PBXFileReference section */
+		01142E1F2AED16E6F5FCC9A4 /* Libre2Peripheral.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Libre2Peripheral.swift; sourceTree = "<group>"; };
+		0BCA3D466B38101975296358 /* AppSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSettings.swift; sourceTree = "<group>"; };
+		0DCFF709B789C33931EBD88F /* SensorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorView.swift; sourceTree = "<group>"; };
+		0F03654AD45D2B5DB4C2B43B /* AppIcon.icon */ = {isa = PBXFileReference; lastKnownFileType = wrapper.icon; path = AppIcon.icon; sourceTree = "<group>"; };
+		0F3E1206913F413B5932BED3 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		1260A031995ED81839F4126E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		1C9814CB83865A2C674C52AB /* AppGroup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppGroup.swift; sourceTree = "<group>"; };
+		30BE926DCDC3C853DA3729E9 /* AdaptiveRoot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdaptiveRoot.swift; sourceTree = "<group>"; };
+		3F792E5C3D353F2FCD8C0FD6 /* HealthKitWriter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthKitWriter.swift; sourceTree = "<group>"; };
+		41E005BC20D0C077396A402F /* GlyphApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphApp.swift; sourceTree = "<group>"; };
+		43786188CDFB7F6C37769C7C /* LaunchOptions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchOptions.swift; sourceTree = "<group>"; };
+		4FFAEEEA7E4EDBE779CC5B6E /* GlyphUITests.xctest */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.cfbundle; path = GlyphUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		542431CA8212DE5F81BE3EE3 /* GlucoseChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseChart.swift; sourceTree = "<group>"; };
+		652237D93B12D8870AB6EE31 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		6C433D84F165A2D0D0E2C099 /* glyph */ = {isa = PBXFileReference; lastKnownFileType = folder; name = glyph; path = .; sourceTree = SOURCE_ROOT; };
+		7D63D8525429087E12F800F0 /* Glyph.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = Glyph.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		83451750B09827A00EBA334A /* LiveActivityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LiveActivityController.swift; sourceTree = "<group>"; };
+		83ADFEF8E590D25977F64081 /* GlyphWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = GlyphWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		85669C114D8F6754A12A176B /* GlucoseLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseLiveActivity.swift; sourceTree = "<group>"; };
+		9429ECFF89175B25F548712A /* ReadingPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingPipeline.swift; sourceTree = "<group>"; };
+		98AC75D232DD43C1CCB5336A /* AlertNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNotifier.swift; sourceTree = "<group>"; };
+		9CDA157A667849F7E342246C /* GlucoseWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseWidget.swift; sourceTree = "<group>"; };
+		9E20AF1B268EE8105BE9CCB3 /* GlyphWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GlyphWidgets.entitlements; sourceTree = "<group>"; };
+		A0BC1C9DF0257F2DFBB78208 /* NowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowView.swift; sourceTree = "<group>"; };
+		A1CC6A29EF2F8E6671A54E80 /* GlucoseActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseActivityAttributes.swift; sourceTree = "<group>"; };
+		A33FB4BF225FD264DE6B3FCD /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
+		A739E31EBA4E1BE4956EE1D6 /* SensorSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorSource.swift; sourceTree = "<group>"; };
+		B9A63142F0B682B584B4F650 /* AppSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSection.swift; sourceTree = "<group>"; };
+		BF3BB6A739301FC4EAD3063C /* SensorController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorController.swift; sourceTree = "<group>"; };
+		BFCEEE9F8F53EC089CEDF4F3 /* ReservedRegionOverlay.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReservedRegionOverlay.swift; sourceTree = "<group>"; };
+		D9A26EA5F9B6C2118F0FB848 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		D9D562EE0B3550C7BBE33BED /* SectionPanes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionPanes.swift; sourceTree = "<group>"; };
+		DD277BC0B56F1BCA36F981C0 /* HistoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryView.swift; sourceTree = "<group>"; };
+		DEEE68996F79FD74054596BF /* SettingsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsView.swift; sourceTree = "<group>"; };
+		DEEEF0A4A7974ABF964F4EB1 /* SimulatedSensorSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimulatedSensorSource.swift; sourceTree = "<group>"; };
+		EA23B2FC844C0D4934D86D43 /* AGPChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AGPChart.swift; sourceTree = "<group>"; };
+		EC0EFD14E49AAF651D1442FB /* ScreenshotTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScreenshotTests.swift; sourceTree = "<group>"; };
+		EC1146430BE656F85C4A45DE /* WidgetKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = WidgetKit.framework; path = System/Library/Frameworks/WidgetKit.framework; sourceTree = SDKROOT; };
+		ECA2616DB82CECB861A1BE5A /* GlyphWidgetsBundle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlyphWidgetsBundle.swift; sourceTree = "<group>"; };
+		F40DD3AD293E010C3D842C14 /* GlucoseStyle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseStyle.swift; sourceTree = "<group>"; };
+		F5B4F996986174EDA4605C82 /* Version.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Version.xcconfig; sourceTree = "<group>"; };
+		F737CA8512971061676099AC /* NFCSensorReader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NFCSensorReader.swift; sourceTree = "<group>"; };
+		FBA1FC234225617898D3FA2E /* Glyph.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Glyph.entitlements; sourceTree = "<group>"; };
+		FFADF0058578A0BC53AEFF3F /* Persistence.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Persistence.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		71F9E2F95A8B4184905D2E57 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				1588411190BC64AE1287C22E /* LibreKit in Frameworks */,
+				224B80AF2AD0B32EF35F86AC /* GlyphCore in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9A09C4BDAACB7A31559B841C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				ABA2C3EE60019F8BDA034FA4 /* LibreKit in Frameworks */,
+				429A9F0422DF9CD825633599 /* GlyphCore in Frameworks */,
+				148FEA41D5C0BAD24BB2594D /* WidgetKit.framework in Frameworks */,
+				8266B413DAA33795B17919B5 /* SwiftUI.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		1B32ED1B309D7E35181BE70C /* Now */ = {
+			isa = PBXGroup;
+			children = (
+				A0BC1C9DF0257F2DFBB78208 /* NowView.swift */,
+			);
+			path = Now;
+			sourceTree = "<group>";
+		};
+		1DA8A726EBE9F1E6F5DF2475 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				0BCA3D466B38101975296358 /* AppSettings.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		2766E677F44E4907AB75BE48 /* Sensor */ = {
+			isa = PBXGroup;
+			children = (
+				01142E1F2AED16E6F5FCC9A4 /* Libre2Peripheral.swift */,
+				F737CA8512971061676099AC /* NFCSensorReader.swift */,
+				BF3BB6A739301FC4EAD3063C /* SensorController.swift */,
+				A739E31EBA4E1BE4956EE1D6 /* SensorSource.swift */,
+				DEEEF0A4A7974ABF964F4EB1 /* SimulatedSensorSource.swift */,
+			);
+			path = Sensor;
+			sourceTree = "<group>";
+		};
+		30AFE5916CEFD9C3DBF10BFD = {
+			isa = PBXGroup;
+			children = (
+				5716FDC5EE3347D59950E2E7 /* App */,
+				4AD248E52FFC6B0751355994 /* design */,
+				3211C369E072987F8B6752DF /* Packages */,
+				A05AB748DD0E173B0134D699 /* Frameworks */,
+				EE2504723E5E0794AD59BC07 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		3211C369E072987F8B6752DF /* Packages */ = {
+			isa = PBXGroup;
+			children = (
+				6C433D84F165A2D0D0E2C099 /* glyph */,
+			);
+			name = Packages;
+			sourceTree = "<group>";
+		};
+		35783DB5083BB5D960E10A0B /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				F5B4F996986174EDA4605C82 /* Version.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		38860DFF36A548D66A6CFF75 /* Health */ = {
+			isa = PBXGroup;
+			children = (
+				3F792E5C3D353F2FCD8C0FD6 /* HealthKitWriter.swift */,
+			);
+			path = Health;
+			sourceTree = "<group>";
+		};
+		3B7CF3256E40344A20908087 /* Sensor */ = {
+			isa = PBXGroup;
+			children = (
+				0DCFF709B789C33931EBD88F /* SensorView.swift */,
+			);
+			path = Sensor;
+			sourceTree = "<group>";
+		};
+		4AD248E52FFC6B0751355994 /* design */ = {
+			isa = PBXGroup;
+			children = (
+				502F89FE8713F5372A8A4761 /* app-icon */,
+			);
+			path = design;
+			sourceTree = "<group>";
+		};
+		502F89FE8713F5372A8A4761 /* app-icon */ = {
+			isa = PBXGroup;
+			children = (
+				0F03654AD45D2B5DB4C2B43B /* AppIcon.icon */,
+			);
+			path = "app-icon";
+			sourceTree = "<group>";
+		};
+		56DBBD32BE1EB8D076E6696E /* GlyphWidgets */ = {
+			isa = PBXGroup;
+			children = (
+				85669C114D8F6754A12A176B /* GlucoseLiveActivity.swift */,
+				9CDA157A667849F7E342246C /* GlucoseWidget.swift */,
+				9E20AF1B268EE8105BE9CCB3 /* GlyphWidgets.entitlements */,
+				ECA2616DB82CECB861A1BE5A /* GlyphWidgetsBundle.swift */,
+				1260A031995ED81839F4126E /* Info.plist */,
+			);
+			path = GlyphWidgets;
+			sourceTree = "<group>";
+		};
+		5716FDC5EE3347D59950E2E7 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				35783DB5083BB5D960E10A0B /* Config */,
+				7C4D68FC4EB099E98B27F405 /* Glyph */,
+				D5D74EB4289B8702DFFC647D /* GlyphUITests */,
+				56DBBD32BE1EB8D076E6696E /* GlyphWidgets */,
+				9AE2A083F894860475A83754 /* Shared */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		7057F80EC1417CE110A42E53 /* Pipeline */ = {
+			isa = PBXGroup;
+			children = (
+				9429ECFF89175B25F548712A /* ReadingPipeline.swift */,
+			);
+			path = Pipeline;
+			sourceTree = "<group>";
+		};
+		7A61DAD0B65E6B4A3EC95F32 /* LiveActivity */ = {
+			isa = PBXGroup;
+			children = (
+				83451750B09827A00EBA334A /* LiveActivityController.swift */,
+			);
+			path = LiveActivity;
+			sourceTree = "<group>";
+		};
+		7C4D68FC4EB099E98B27F405 /* Glyph */ = {
+			isa = PBXGroup;
+			children = (
+				CB3F77AA9FC30B29998B6084 /* Alerts */,
+				C8D6FFDA3E0CE3EDF2037270 /* Charts */,
+				D9E2E69867A24301B93E0B1C /* Debug */,
+				CA4EFE6ADC02411901B123DB /* Features */,
+				38860DFF36A548D66A6CFF75 /* Health */,
+				ABC49875A33A54C8846F5040 /* Layout */,
+				7A61DAD0B65E6B4A3EC95F32 /* LiveActivity */,
+				7057F80EC1417CE110A42E53 /* Pipeline */,
+				2766E677F44E4907AB75BE48 /* Sensor */,
+				1DA8A726EBE9F1E6F5DF2475 /* Settings */,
+				EC69489484975991952C7D60 /* Store */,
+				D9A26EA5F9B6C2118F0FB848 /* Assets.xcassets */,
+				FBA1FC234225617898D3FA2E /* Glyph.entitlements */,
+				41E005BC20D0C077396A402F /* GlyphApp.swift */,
+				652237D93B12D8870AB6EE31 /* Info.plist */,
+			);
+			path = Glyph;
+			sourceTree = "<group>";
+		};
+		82C37EE656FB08BA32756A5B /* History */ = {
+			isa = PBXGroup;
+			children = (
+				DD277BC0B56F1BCA36F981C0 /* HistoryView.swift */,
+			);
+			path = History;
+			sourceTree = "<group>";
+		};
+		9AE2A083F894860475A83754 /* Shared */ = {
+			isa = PBXGroup;
+			children = (
+				1C9814CB83865A2C674C52AB /* AppGroup.swift */,
+				A1CC6A29EF2F8E6671A54E80 /* GlucoseActivityAttributes.swift */,
+				542431CA8212DE5F81BE3EE3 /* GlucoseChart.swift */,
+				F40DD3AD293E010C3D842C14 /* GlucoseStyle.swift */,
+			);
+			path = Shared;
+			sourceTree = "<group>";
+		};
+		A05AB748DD0E173B0134D699 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				A33FB4BF225FD264DE6B3FCD /* SwiftUI.framework */,
+				EC1146430BE656F85C4A45DE /* WidgetKit.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		ABC49875A33A54C8846F5040 /* Layout */ = {
+			isa = PBXGroup;
+			children = (
+				30BE926DCDC3C853DA3729E9 /* AdaptiveRoot.swift */,
+				B9A63142F0B682B584B4F650 /* AppSection.swift */,
+				BFCEEE9F8F53EC089CEDF4F3 /* ReservedRegionOverlay.swift */,
+				D9D562EE0B3550C7BBE33BED /* SectionPanes.swift */,
+			);
+			path = Layout;
+			sourceTree = "<group>";
+		};
+		B3E919E5858D21B1DCA11292 /* Settings */ = {
+			isa = PBXGroup;
+			children = (
+				DEEE68996F79FD74054596BF /* SettingsView.swift */,
+			);
+			path = Settings;
+			sourceTree = "<group>";
+		};
+		C8D6FFDA3E0CE3EDF2037270 /* Charts */ = {
+			isa = PBXGroup;
+			children = (
+				EA23B2FC844C0D4934D86D43 /* AGPChart.swift */,
+			);
+			path = Charts;
+			sourceTree = "<group>";
+		};
+		CA4EFE6ADC02411901B123DB /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				82C37EE656FB08BA32756A5B /* History */,
+				1B32ED1B309D7E35181BE70C /* Now */,
+				3B7CF3256E40344A20908087 /* Sensor */,
+				B3E919E5858D21B1DCA11292 /* Settings */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		CB3F77AA9FC30B29998B6084 /* Alerts */ = {
+			isa = PBXGroup;
+			children = (
+				98AC75D232DD43C1CCB5336A /* AlertNotifier.swift */,
+			);
+			path = Alerts;
+			sourceTree = "<group>";
+		};
+		D5D74EB4289B8702DFFC647D /* GlyphUITests */ = {
+			isa = PBXGroup;
+			children = (
+				EC0EFD14E49AAF651D1442FB /* ScreenshotTests.swift */,
+			);
+			path = GlyphUITests;
+			sourceTree = "<group>";
+		};
+		D9E2E69867A24301B93E0B1C /* Debug */ = {
+			isa = PBXGroup;
+			children = (
+				43786188CDFB7F6C37769C7C /* LaunchOptions.swift */,
+			);
+			path = Debug;
+			sourceTree = "<group>";
+		};
+		EC69489484975991952C7D60 /* Store */ = {
+			isa = PBXGroup;
+			children = (
+				0F3E1206913F413B5932BED3 /* Models.swift */,
+				FFADF0058578A0BC53AEFF3F /* Persistence.swift */,
+			);
+			path = Store;
+			sourceTree = "<group>";
+		};
+		EE2504723E5E0794AD59BC07 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				7D63D8525429087E12F800F0 /* Glyph.app */,
+				4FFAEEEA7E4EDBE779CC5B6E /* GlyphUITests.xctest */,
+				83ADFEF8E590D25977F64081 /* GlyphWidgets.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		985D2C50F8F19D6E97D2AD9B /* GlyphUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 14B4C0DF82E9B5551A33C3C2 /* Build configuration list for PBXNativeTarget "GlyphUITests" */;
+			buildPhases = (
+				F729C3674ADECBFCC30801E1 /* Sources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				C316B5A13B6E12535A88C7C6 /* PBXTargetDependency */,
+			);
+			name = GlyphUITests;
+			packageProductDependencies = (
+			);
+			productName = GlyphUITests;
+			productReference = 4FFAEEEA7E4EDBE779CC5B6E /* GlyphUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		AE84086BB71595152915B240 /* GlyphWidgets */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7428B447076C9C82FF58EF91 /* Build configuration list for PBXNativeTarget "GlyphWidgets" */;
+			buildPhases = (
+				9B062CD2426591C1952165E9 /* Sources */,
+				9A09C4BDAACB7A31559B841C /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GlyphWidgets;
+			packageProductDependencies = (
+				3B8558D06FA5A17F12108EFE /* LibreKit */,
+				6E05738CE3FECA9FC7429D85 /* GlyphCore */,
+			);
+			productName = GlyphWidgets;
+			productReference = 83ADFEF8E590D25977F64081 /* GlyphWidgets.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+		F54BF7F17AC0A13BBE1E0C12 /* Glyph */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 2A20A7C8BD9C10D484F7817D /* Build configuration list for PBXNativeTarget "Glyph" */;
+			buildPhases = (
+				4622FAF7E6A0B93283B9720D /* Sources */,
+				9E6A831CAF90EA33EF6AFEC3 /* Resources */,
+				71F9E2F95A8B4184905D2E57 /* Frameworks */,
+				3DDB365D18BCE17C74A020F5 /* Embed Foundation Extensions */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F87F529A4D76C06F1BEE412A /* PBXTargetDependency */,
+			);
+			name = Glyph;
+			packageProductDependencies = (
+				C07A18C7B309377D11BCC2E1 /* LibreKit */,
+				E26212F6EBE2A6DAD4F5497F /* GlyphCore */,
+			);
+			productName = Glyph;
+			productReference = 7D63D8525429087E12F800F0 /* Glyph.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		A7D9785233E3185C5D28B33F /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 2720;
+				TargetAttributes = {
+					985D2C50F8F19D6E97D2AD9B = {
+						DevelopmentTeam = 6J5C52M5U7;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F54BF7F17AC0A13BBE1E0C12;
+					};
+					AE84086BB71595152915B240 = {
+						DevelopmentTeam = 6J5C52M5U7;
+						ProvisioningStyle = Automatic;
+					};
+					F54BF7F17AC0A13BBE1E0C12 = {
+						DevelopmentTeam = 6J5C52M5U7;
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = B4AEB906C0C0A894869CFAD8 /* Build configuration list for PBXProject "Glyph" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 30AFE5916CEFD9C3DBF10BFD;
+			minimizedProjectReferenceProxies = 1;
+			packageReferences = (
+				B375C6407CDF67560271C38C /* XCLocalSwiftPackageReference "." */,
+			);
+			preferredProjectObjectVersion = 77;
+			productRefGroup = EE2504723E5E0794AD59BC07 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F54BF7F17AC0A13BBE1E0C12 /* Glyph */,
+				AE84086BB71595152915B240 /* GlyphWidgets */,
+				985D2C50F8F19D6E97D2AD9B /* GlyphUITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		9E6A831CAF90EA33EF6AFEC3 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				FAB4CEAB3A23BB0896E28B0B /* AppIcon.icon in Resources */,
+				A924271F73B95B7267560E67 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		4622FAF7E6A0B93283B9720D /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				93C02FBA17212AC2E35E9D2E /* AGPChart.swift in Sources */,
+				5A9AC44230577A469A853086 /* AdaptiveRoot.swift in Sources */,
+				D3753BD6FF24984B4F2B3DB7 /* AlertNotifier.swift in Sources */,
+				5AD267E8FBB6B13E6FD2C76D /* AppGroup.swift in Sources */,
+				57076ECDA6EBE841E86D8C65 /* AppSection.swift in Sources */,
+				A974C342DD7E078C373DD3AB /* AppSettings.swift in Sources */,
+				FDB96BFBCFB2836978D26760 /* GlucoseActivityAttributes.swift in Sources */,
+				CEE11D37BBF6AFDF07E776F6 /* GlucoseChart.swift in Sources */,
+				BE5257490EF839C12818CD12 /* GlucoseStyle.swift in Sources */,
+				61E86A811E26D763E5BC5CDD /* GlyphApp.swift in Sources */,
+				18BB6D7F82D64AB18D15F756 /* HealthKitWriter.swift in Sources */,
+				C62B94905874D144555A65B3 /* HistoryView.swift in Sources */,
+				F1391070EC4659479437CEE8 /* LaunchOptions.swift in Sources */,
+				368F134C3D1C2E2DBF004E5E /* Libre2Peripheral.swift in Sources */,
+				F28977123A77FD9F801EEF1C /* LiveActivityController.swift in Sources */,
+				535014DB1ACAEC707D3CE416 /* Models.swift in Sources */,
+				C51D0366E693A77E2D5D68C3 /* NFCSensorReader.swift in Sources */,
+				E59603B5049368BC8CE5A6CF /* NowView.swift in Sources */,
+				1A359D95020E16E7ED597E28 /* Persistence.swift in Sources */,
+				5F038F2D70855E261B2DD2A0 /* ReadingPipeline.swift in Sources */,
+				A289C8466804F7E8FF451914 /* ReservedRegionOverlay.swift in Sources */,
+				1A764EBF74AF3B6B6645B8C9 /* SectionPanes.swift in Sources */,
+				14F3EF9C608BEB1B2B0F2D89 /* SensorController.swift in Sources */,
+				D2F134607EA2C79A79E351F6 /* SensorSource.swift in Sources */,
+				508E6EA99558BD010DF76770 /* SensorView.swift in Sources */,
+				FEB8A9343009B0CFBB22ACC6 /* SettingsView.swift in Sources */,
+				0CA6150D51A3CA095CCC96B6 /* SimulatedSensorSource.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		9B062CD2426591C1952165E9 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				C005EB9EA6429CC51AD67CF0 /* AppGroup.swift in Sources */,
+				4289284B39FD33DC9F11B1C5 /* GlucoseActivityAttributes.swift in Sources */,
+				C846FB6CA283AB3B5391A23B /* GlucoseChart.swift in Sources */,
+				8574072799ECABE93076F8C9 /* GlucoseLiveActivity.swift in Sources */,
+				E9ABD6D82E3B0A9DC85F6640 /* GlucoseStyle.swift in Sources */,
+				F3C28FD6AF08306DDF2C8412 /* GlucoseWidget.swift in Sources */,
+				771821B898ED3310022867DC /* GlyphWidgetsBundle.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F729C3674ADECBFCC30801E1 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8EB96237034B472ACF0165E2 /* ScreenshotTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		C316B5A13B6E12535A88C7C6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F54BF7F17AC0A13BBE1E0C12 /* Glyph */;
+			targetProxy = 66B47995D53207AA56622E1D /* PBXContainerItemProxy */;
+		};
+		F87F529A4D76C06F1BEE412A /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = AE84086BB71595152915B240 /* GlyphWidgets */;
+			targetProxy = F5B2976E4746DC3C3B3FE5BE /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		0F4D33B2A9B589BE24F440E6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = App/GlyphWidgets/GlyphWidgets.entitlements;
+				INFOPLIST_FILE = App/GlyphWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.bitwisemedia.glyph.widgets;
+				PRODUCT_NAME = GlyphWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		7886D7F08C59E5269A015026 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = App/GlyphWidgets/GlyphWidgets.entitlements;
+				INFOPLIST_FILE = App/GlyphWidgets/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.bitwisemedia.glyph.widgets;
+				PRODUCT_NAME = GlyphWidgets;
+				SDKROOT = iphoneos;
+				SKIP_INSTALL = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		9D2BCD8DF60BD169C2126CA5 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = App/Glyph/Glyph.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = App/Glyph/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.bitwisemedia.glyph;
+				PRODUCT_NAME = Glyph;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		A56DF4A06646094422E13D47 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = App/Glyph/Glyph.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				INFOPLIST_FILE = App/Glyph/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.bitwisemedia.glyph;
+				PRODUCT_NAME = Glyph;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		B586385C9C854B0E4108EBEC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.bitwisemedia.glyph.uitests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Glyph;
+			};
+			name = Release;
+		};
+		CBA873F82BEA70B4FDFA8A42 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5B4F996986174EDA4605C82 /* Version.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = 6J5C52M5U7;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		CDDEFA0C870A7D2276928E88 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = F5B4F996986174EDA4605C82 /* Version.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = 6J5C52M5U7;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_PREVIEWS = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 27.0;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 6.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		D4DBECE8B82CC208CCC64221 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				GENERATE_INFOPLIST_FILE = YES;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = uk.co.bitwisemedia.glyph.uitests;
+				SDKROOT = iphoneos;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = nonisolated;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = Glyph;
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		14B4C0DF82E9B5551A33C3C2 /* Build configuration list for PBXNativeTarget "GlyphUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				D4DBECE8B82CC208CCC64221 /* Debug */,
+				B586385C9C854B0E4108EBEC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		2A20A7C8BD9C10D484F7817D /* Build configuration list for PBXNativeTarget "Glyph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				9D2BCD8DF60BD169C2126CA5 /* Debug */,
+				A56DF4A06646094422E13D47 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		7428B447076C9C82FF58EF91 /* Build configuration list for PBXNativeTarget "GlyphWidgets" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				0F4D33B2A9B589BE24F440E6 /* Debug */,
+				7886D7F08C59E5269A015026 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		B4AEB906C0C0A894869CFAD8 /* Build configuration list for PBXProject "Glyph" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				CBA873F82BEA70B4FDFA8A42 /* Debug */,
+				CDDEFA0C870A7D2276928E88 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCLocalSwiftPackageReference section */
+		B375C6407CDF67560271C38C /* XCLocalSwiftPackageReference "." */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = .;
+		};
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		3B8558D06FA5A17F12108EFE /* LibreKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LibreKit;
+		};
+		6E05738CE3FECA9FC7429D85 /* GlyphCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GlyphCore;
+		};
+		C07A18C7B309377D11BCC2E1 /* LibreKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = LibreKit;
+		};
+		E26212F6EBE2A6DAD4F5497F /* GlyphCore */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = GlyphCore;
+		};
+/* End XCSwiftPackageProductDependency section */
+	};
+	rootObject = A7D9785233E3185C5D28B33F /* Project object */;
+}

@@ -1,0 +1,163 @@
+# Copyright 2026 BitWise Media Group Ltd
+# SPDX-License-Identifier: MIT
+#
+# XcodeGen spec for Glyph.xcodeproj (`mise run gen`). The generated project is
+# committed; regenerate after editing this file or adding/removing app
+# sources, and CI fails if the two drift. The app and widget extension depend
+# on the local Swift package at the repo root (LibreKit + GlyphCore).
+#
+# Signing: DEVELOPMENT_TEAM below must be a paid team; NFC tag reading,
+# HealthKit, App Groups and time-sensitive notifications all need one. Set it
+# here rather than in Xcode's Signing & Capabilities, which `mise run gen`
+# would overwrite. `mise run app-build` builds unsigned for the simulator.
+name: Glyph
+
+options:
+  bundleIdPrefix: uk.co.bitwisemedia
+  # Icon Composer documents are bundles: one resource, not a folder of files.
+  fileTypes:
+    icon:
+      file: true
+      buildPhase: resources
+  # iOS 27.0+: the iPhone Duo APIs (ArrangementView, reserved regions, the
+  # hinge) arrived in 27.1 and are behind #available checks.
+  deploymentTarget:
+    iOS: "27.0"
+  xcodeVersion: "27.2"
+  createIntermediateGroups: true
+  groupSortPosition: top
+
+configFiles:
+  Debug: App/Config/Version.xcconfig
+  Release: App/Config/Version.xcconfig
+
+settings:
+  base:
+    SWIFT_VERSION: "6.0"
+    SWIFT_DEFAULT_ACTOR_ISOLATION: MainActor
+    SWIFT_APPROACHABLE_CONCURRENCY: YES
+    CODE_SIGN_STYLE: Automatic
+    DEVELOPMENT_TEAM: 6J5C52M5U7
+    ENABLE_USER_SCRIPT_SANDBOXING: YES
+    ENABLE_PREVIEWS: YES
+    TARGETED_DEVICE_FAMILY: "1" # iPhone only, for now
+    LOCALIZATION_PREFERS_STRING_CATALOGS: YES
+
+packages:
+  Glyph:
+    path: .
+
+targets:
+  Glyph:
+    type: application
+    platform: iOS
+    sources:
+      - path: App/Glyph
+      - path: App/Shared
+      # The app icon (Icon Composer), with its sources in design/app-icon.
+      - path: design/app-icon/AppIcon.icon
+    dependencies:
+      - package: Glyph
+        product: LibreKit
+      - package: Glyph
+        product: GlyphCore
+      - target: GlyphWidgets
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: uk.co.bitwisemedia.glyph
+        PRODUCT_NAME: Glyph
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME: AccentColor
+    entitlements:
+      path: App/Glyph/Glyph.entitlements
+      properties:
+        com.apple.developer.nfc.readersession.formats: [TAG]
+        com.apple.security.application-groups: [group.uk.co.bitwisemedia.glyph]
+        com.apple.developer.healthkit: true
+        com.apple.developer.healthkit.access: []
+        com.apple.developer.usernotifications.time-sensitive: true
+    info:
+      path: App/Glyph/Info.plist
+      properties:
+        CFBundleDisplayName: Glyph
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        LSApplicationCategoryType: public.app-category.medical
+        UILaunchScreen: {}
+        UIApplicationSceneManifest:
+          UIApplicationSupportsMultipleScenes: true
+        UISupportedInterfaceOrientations:
+          - UIInterfaceOrientationPortrait
+          - UIInterfaceOrientationPortraitUpsideDown
+          - UIInterfaceOrientationLandscapeLeft
+          - UIInterfaceOrientationLandscapeRight
+        UIBackgroundModes: [bluetooth-central]
+        NSSupportsLiveActivities: true
+        NFCReaderUsageDescription: Glyph reads your FreeStyle Libre 2 sensor over NFC to pair with it.
+        NSBluetoothAlwaysUsageDescription: Glyph receives a glucose reading from your sensor over Bluetooth every minute, including in the background.
+        NSHealthUpdateUsageDescription: Glyph can save your glucose readings to the Health app.
+        ITSAppUsesNonExemptEncryption: false
+
+  GlyphWidgets:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: App/GlyphWidgets
+      - path: App/Shared
+    dependencies:
+      - package: Glyph
+        product: LibreKit
+      - package: Glyph
+        product: GlyphCore
+      - sdk: WidgetKit.framework
+      - sdk: SwiftUI.framework
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: uk.co.bitwisemedia.glyph.widgets
+        PRODUCT_NAME: GlyphWidgets
+        SKIP_INSTALL: YES
+        # WidgetKit calls providers off the main actor.
+        SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
+    entitlements:
+      path: App/GlyphWidgets/GlyphWidgets.entitlements
+      properties:
+        com.apple.security.application-groups: [group.uk.co.bitwisemedia.glyph]
+    info:
+      path: App/GlyphWidgets/Info.plist
+      properties:
+        CFBundleDisplayName: Glyph
+        CFBundleShortVersionString: $(MARKETING_VERSION)
+        CFBundleVersion: $(CURRENT_PROJECT_VERSION)
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+
+  # Screenshot UI tests: `mise run screenshots`.
+  GlyphUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: App/GlyphUITests
+    dependencies:
+      - target: Glyph
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: uk.co.bitwisemedia.glyph.uitests
+        GENERATE_INFOPLIST_FILE: YES
+        TEST_TARGET_NAME: Glyph
+        SWIFT_DEFAULT_ACTOR_ISOLATION: nonisolated
+
+schemes:
+  Glyph:
+    build:
+      targets:
+        Glyph: all
+        GlyphWidgets: all
+        GlyphUITests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - GlyphUITests
+    archive:
+      config: Release
