@@ -1,0 +1,46 @@
+{
+  "theme": "light",
+  "frames": [
+    {
+      "id": "01-now",
+      "scenario": "inRange",
+      "section": "now",
+      "headline": "Glucose, every minute.",
+      "subline": "Straight from your sensor over Bluetooth, with no cloud in between.",
+      "overrides": {
+        "duo-inner-2853x2007": {
+          "headline": "Built for the fold.",
+          "subline": "On iPhone Duo, every screen opens into two panes."
+        }
+      }
+    },
+    {
+      "id": "02-trend",
+      "scenario": "risingFast",
+      "section": "now",
+      "headline": "See where it's heading.",
+      "subline": "A trend arrow, the change over five minutes and three hours of context."
+    },
+    {
+      "id": "03-history",
+      "scenario": "inRange",
+      "section": "history",
+      "headline": "Fourteen days at a glance.",
+      "subline": "Time in range, GMI, variability and your daily pattern."
+    },
+    {
+      "id": "04-alerts",
+      "scenario": "inRange",
+      "section": "settings",
+      "headline": "Alerts, each with its own snooze.",
+      "subline": "Urgent low, low, high, and falling or rising fast."
+    },
+    {
+      "id": "05-colour",
+      "scenario": "low",
+      "section": "now",
+      "headline": "Colour that reads at a glance.",
+      "subline": "Green in range, yellow when high, orange and red when low."
+    }
+  ]
+}

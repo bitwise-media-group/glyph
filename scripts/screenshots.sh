@@ -4,7 +4,8 @@
 #
 # Runs the screenshot UI tests (App/GlyphUITests) on one or more devices and
 # exports every screenshot as a PNG, in a folder per device, named
-# <orientation>-<width>x<height>-<scenario>-<screen>.png.
+# <shape>-<width>x<height>-<scenario>-<screen>.png, where the shape (portrait
+# or landscape) is the window's, not the device's orientation.
 #
 #   scripts/screenshots.sh [destination ...]
 #

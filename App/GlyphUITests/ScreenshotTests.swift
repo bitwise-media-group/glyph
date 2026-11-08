@@ -1,18 +1,22 @@
 // Copyright 2026 BitWise Media Group Ltd
 // SPDX-License-Identifier: MIT
 
+import UniformTypeIdentifiers
 import XCTest
 
 /// Screenshots of every scenario on the screens it affects, in portrait and
 /// landscape, saved as test attachments. `mise run screenshots` runs this and
-/// exports them as PNGs.
+/// exports them as PNGs, named for the window's shape (`portrait` or
+/// `landscape`), which isn't always the device's orientation.
 ///
 /// Each launch passes `-GlyphScenario`, so the app runs a fixed scenario
 /// (`GlucoseScenario`) through the simulated sensor and the real decoding
 /// pipeline, from an in-memory store with Bluetooth, alerts and the Live
 /// Activity off. XCTest can rotate the device but can't fold it, so on the
 /// iPhone Duo set the posture first (on the phone, or in Device Hub) and run
-/// once per posture.
+/// once per posture. Neither of the Duo's displays rotates in the simulator:
+/// the outer one stays portrait and the inner one landscape, so each posture
+/// gives one set.
 final class ScreenshotTests: XCTestCase {
     /// The screens each scenario is captured on.
     static let plan: [(scenario: String, sections: [String])] = [
@@ -30,27 +34,26 @@ final class ScreenshotTests: XCTestCase {
 
     static let tabTitles = ["now": "Now", "history": "History", "sensor": "Sensor", "settings": "Settings"]
 
-    static let orientations: [(name: String, orientation: UIDeviceOrientation)] = [
-        ("portrait", .portrait), ("landscape", .landscapeLeft),
-    ]
+    static let orientations: [UIDeviceOrientation] = [.portrait, .landscapeLeft]
 
     @MainActor
     func testScreenshots() throws {
         continueAfterFailure = true
         defer { XCUIDevice.shared.orientation = .portrait }
         var portraitSize: CGSize?
-        for (orientationName, orientation) in Self.orientations {
+        for orientation in Self.orientations {
             XCUIDevice.shared.orientation = orientation
             for (scenario, sections) in Self.plan {
                 let app = XCUIApplication()
                 app.launchArguments = ["-GlyphScenario", scenario, "-GlyphSection", sections[0]]
                 app.launch()
-                let windowSize = app.windows.firstMatch.frame.size
+                let window = app.windows.firstMatch
+                let windowSize = window.frame.size
                 if orientation == .portrait {
                     portraitSize = portraitSize ?? windowSize
                 } else if windowSize == portraitSize {
-                    // This screen doesn't rotate (the folded iPhone Duo's
-                    // outer display): its shots would repeat portrait's.
+                    // This display doesn't rotate (either of the iPhone Duo's
+                    // in the simulator): its shots would repeat portrait's.
                     app.terminate()
                     break
                 }
@@ -58,10 +61,14 @@ final class ScreenshotTests: XCTestCase {
                 for (index, section) in sections.enumerated() {
                     if index > 0 { open(section, in: app) }
                     pause(1.5)  // let charts and transitions settle
-                    let size = app.windows.firstMatch.frame.size
+                    let size = window.frame.size
+                    let shape = size.width > size.height ? "landscape" : "portrait"
+                    // The window's screenshot, not the app's: on the unfolded
+                    // iPhone Duo, app.screenshot() comes back black, since the
+                    // main screen is the outer display, which is off.
                     attach(
-                        app.screenshot(),
-                        name: "\(orientationName)-\(Int(size.width))x\(Int(size.height))-\(scenario)-\(section)")
+                        window.screenshot(),
+                        name: "\(shape)-\(Int(size.width))x\(Int(size.height))-\(scenario)-\(section)")
                 }
                 app.terminate()
             }
@@ -95,9 +102,26 @@ final class ScreenshotTests: XCTestCase {
         }
     }
 
+    /// Attaches the screenshot as a PNG with upright pixels. The iPhone Duo's
+    /// inner panel is portrait, so its landscape screenshots come back as
+    /// portrait pixels with an orientation tag, which tools that read the
+    /// pixels (`design/app-store/build.py`, `rsvg-convert`) ignore.
     @MainActor
     private func attach(_ screenshot: XCUIScreenshot, name: String) {
-        let attachment = XCTAttachment(screenshot: screenshot)
+        let image = screenshot.image
+        let attachment: XCTAttachment
+        if image.imageOrientation == .up {
+            attachment = XCTAttachment(screenshot: screenshot)
+        } else {
+            let format = UIGraphicsImageRendererFormat()
+            format.scale = image.scale
+            format.preferredRange = .standard
+            let upright = UIGraphicsImageRenderer(size: image.size, format: format).image { _ in
+                image.draw(at: .zero)
+            }
+            attachment = XCTAttachment(
+                data: upright.pngData() ?? screenshot.pngRepresentation, uniformTypeIdentifier: UTType.png.identifier)
+        }
         attachment.name = name
         attachment.lifetime = .keepAlways
         add(attachment)
