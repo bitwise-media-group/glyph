@@ -1,0 +1,47 @@
+# Copyright 2026 BitWise Media Group Ltd
+# SPDX-License-Identifier: MIT
+
+# Fast-forward merge — thin caller for the org's reusable merge workflow.
+# `/merge` merges an approved, green PR now; `/auto-merge` (or the `auto-merge`
+# label) arms it to merge automatically once approved and green. Both preserve
+# every commit signature via the `ff-merge` action.
+#
+# The `workflows:` list below is every GitHub Actions workflow that must be green
+# before a merge, plus "Merge Review Ack" (merge-review-ack.yaml) so an approval
+# completes the auto-merge. "Continuous Integration" is ci.yaml, "Security
+# Analysis" security.yaml. Xcode Cloud's pull-request build reports a check run
+# rather than a workflow run, so it can't be listed here: ff-merge still
+# re-verifies every check (Xcode Cloud's included) before merging, but when Xcode
+# Cloud is the last to go green an armed PR waits for the next sweep below.
+#
+# Prerequisites (one-time, org-wide — see bitwise-media-group/ff-merge):
+#   - org variable FF_MERGE_CLIENT_ID and org secret FF_MERGE_PRIVATE_KEY
+#   - the "FF Merge" App installed on this repo and in the ruleset bypass list
+#
+# The reusable workflow is pinned to a full commit SHA (tag in the comment) so a
+# moved tag can never change what runs; Renovate keeps the pin fresh.
+name: Merge
+
+# issue_comment + workflow_run are the point (see above); zizmor flags the
+# triggers themselves, the reusable workflow does the privilege handling
+on: # zizmor: ignore[dangerous-triggers]
+  issue_comment:
+    types: [created]
+  workflow_run:
+    workflows: ["Continuous Integration", "Security Analysis", "Merge Review Ack"]
+    types: [completed]
+  schedule:
+    # backstop sweep of armed PRs for any missed event trigger (and for PRs whose
+    # last check to finish was Xcode Cloud's)
+    - cron: "53 * * * *"
+
+# the App token does the privileged work; the caller grants nothing
+permissions: {}
+
+jobs:
+  merge:
+    uses: bitwise-media-group/github-workflows/.github/workflows/merge.yaml@35d8e9a1ce772f67f97e73484dc5b7a50c29e0f3 # v8.1.1
+    with:
+      app-client-id: ${{ vars.FF_MERGE_CLIENT_ID }}
+    secrets:
+      app-private-key: ${{ secrets.FF_MERGE_PRIVATE_KEY }}

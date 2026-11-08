@@ -1,0 +1,26 @@
+# Copyright 2026 BitWise Media Group Ltd
+# SPDX-License-Identifier: MIT
+
+# Companion to merge.yaml. It completes on an approving review so its
+# workflow_run(completed) fires in the base-repo context, where merge.yaml's
+# review-completed job mints the App token and retries the fast-forward — closing
+# the fork-PR auto-merge gap (an approval on a fork PR carries no secrets, and if
+# CI was already green the approval is the last event). Harmless for same-repo PRs.
+#
+# Keep "Merge Review Ack" in merge.yaml's `workflow_run.workflows` list. No secret
+# needed — the completed run is the only signal.
+#
+# The reusable workflow is pinned to a full commit SHA (tag in the comment) so a
+# moved tag can never change what runs; Renovate keeps the pin fresh.
+name: Merge Review Ack
+
+on:
+  pull_request_review:
+    types: [submitted]
+
+# does no privileged work; grants nothing
+permissions: {}
+
+jobs:
+  ack:
+    uses: bitwise-media-group/github-workflows/.github/workflows/merge-review-ack.yaml@35d8e9a1ce772f67f97e73484dc5b7a50c29e0f3 # v8.1.1

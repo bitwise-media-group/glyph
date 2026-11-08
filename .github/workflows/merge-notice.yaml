@@ -1,0 +1,27 @@
+# Copyright 2026 BitWise Media Group Ltd
+# SPDX-License-Identifier: MIT
+
+# Companion to merge.yaml. When a PR is opened it posts a one-time comment
+# explaining that this repo merges via `/merge`. pull_request_target (not
+# pull_request) so the notice also reaches fork PRs; the reusable workflow only
+# posts a static comment with a pull-requests:write token, so the elevated context
+# is safe. No secret needed.
+#
+# The reusable workflow is pinned to a full commit SHA (tag in the comment) so a
+# moved tag can never change what runs; Renovate keeps the pin fresh.
+name: Merge Notice
+
+# pull_request_target is the point (see above); zizmor flags the trigger itself
+on: # zizmor: ignore[dangerous-triggers]
+  pull_request_target:
+    types: [opened]
+
+# the reusable workflow comments with GITHUB_TOKEN; grant just that
+permissions:
+  pull-requests: write
+
+jobs:
+  notice:
+    uses: bitwise-media-group/github-workflows/.github/workflows/merge-notice.yaml@35d8e9a1ce772f67f97e73484dc5b7a50c29e0f3 # v8.1.1
+    with:
+      pr-number: ${{ github.event.pull_request.number }}

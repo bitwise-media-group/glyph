@@ -19,6 +19,10 @@ personal software, not a medical device.
     Linux, and the XcodeGen drift check.
   - **Xcode Cloud** builds and tests the app on pull requests, sends merges to `main` to TestFlight, and builds `v*`
     tags for the App Store. Its workflows live in App Store Connect, managed through the API, not in the repo.
+- The other workflows in `.github/workflows/` are thin callers of `bitwise-media-group/github-workflows`, pinned by SHA:
+  `release` (release-please and the docs site), `security` (CodeQL over the workflows only, since Swift needs macOS),
+  `merge`, `merge-review-ack` and `merge-notice` (the signed fast-forward `/merge` and `/auto-merge`), `renovate` and
+  `add-to-project`. PRs merge with `/merge`, not the merge button.
 - `ci_scripts/`: Xcode Cloud's hooks (they must sit beside the project). Xcode Cloud sets the build number itself.
 - The docs site (Zensical, in dotty's theme): `zensical.toml`, `pyproject.toml`/`uv.lock`, the pages in `docs/`, and
   `overrides/` for the landing page and header. `docs/javascripts/glyph.js` draws the app mockups into `data-gl-mock`

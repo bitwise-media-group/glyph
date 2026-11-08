@@ -1,0 +1,39 @@
+# Copyright 2026 BitWise Media Group Ltd
+# SPDX-License-Identifier: MIT
+
+# Security analysis — thin caller for the org's reusable security workflow. It
+# owns the triggers and grants the analyze permissions. The reusable workflow
+# detects actions, go and javascript-typescript; Swift isn't among them
+# (CodeQL's Swift extractor needs a macOS runner and an Xcode build, and the
+# reusable workflow runs on ubuntu), so the matrix is `actions`: build-free
+# CodeQL over the GitHub Actions workflows. It's set explicitly so a future
+# tooling-only package.json can't add an empty javascript-typescript leg.
+#
+# The reusable workflow is pinned to a full commit SHA (tag in the comment) so a
+# moved tag can never change what runs; Renovate keeps the pin fresh.
+name: Security Analysis
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: ["main", "releases/*"]
+  schedule:
+    - cron: "43 20 * * 4"
+
+# ceiling for the reusable workflow's analyze job
+permissions:
+  # upload analysis results to code scanning
+  security-events: write
+  # fetch internal or private CodeQL packs
+  packages: read
+  # only required for workflows in private repositories
+  actions: read
+  # check out the repository
+  contents: read
+
+jobs:
+  analyze:
+    uses: bitwise-media-group/github-workflows/.github/workflows/security.yaml@35d8e9a1ce772f67f97e73484dc5b7a50c29e0f3 # v8.1.1
+    with:
+      languages: actions
