@@ -102,6 +102,6 @@ Debug launch arguments (`LaunchOptions`; release builds ignore them):
 
 - The fixtures in `Tests/LibreKitTests/Fixtures.swift` are LibreTools' published examples (MIT). The expected decrypted
   bytes and mg/dL values are outputs of GlucoseDirect's implementation (MIT) for the same input.
-- New fixtures come from real sensors. Turn on Sensor ▸ Debug ▸ Capture raw frames, which writes `uid=… frame=…` lines,
-  then share the log.
+- New fixtures come from real sensors. Turn on Sensor ▸ Debug ▸ Capture raw frames, which writes `uid=… frame=…` lines
+  (plus a `sensor … calibration=…` header and a `blood …` line per finger-prick), then share the log.
 - Write `#expect` with closures, not key paths (`allSatisfy { $0.isValid }`). Keep mutating calls outside the macro.

@@ -3,10 +3,11 @@
 
 /// Turns raw sensor records into glucose in mg/dL.
 ///
-/// ``FactoryCalibration`` is the only implementation in v1. The protocol is
-/// the seam for a fingerstick-based calibration later (for example a linear
-/// correction applied on top of the factory value), and it keeps the
-/// factory algorithm isolated in one file (see NOTICE).
+/// ``FactoryCalibration`` is the only implementation, and the protocol keeps
+/// it isolated in one file (see NOTICE). The optional finger-prick
+/// calibration is not a converter: GlyphCore's `UserCalibration` corrects
+/// the factory value afterwards, in the app's pipeline, so the factory value
+/// is kept beside the corrected one.
 public protocol GlucoseConverter: Sendable {
     /// Glucose in mg/dL, or `nil` when the record can't be converted.
     func glucose(for reading: RawReading) -> Double?

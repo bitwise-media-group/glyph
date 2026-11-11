@@ -55,9 +55,6 @@ final class SensorController: UnlockCounter {
     /// The latest user-facing problem, cleared on the next success.
     var lastError: String?
 
-    /// Raw frame hex dumps, when capture is on (Settings ▸ Debug).
-    static var captureURL: URL { URL.documentsDirectory.appending(path: "glyph-frames.log") }
-
     @ObservationIgnored private let context: ModelContext
     @ObservationIgnored private let pipeline: ReadingPipeline
     @ObservationIgnored private let settings: AppSettings
@@ -67,6 +64,9 @@ final class SensorController: UnlockCounter {
     @ObservationIgnored private var simulator: SimulatedSensorSource?
     @ObservationIgnored private var listeners: [Task<Void, Never>] = []
     @ObservationIgnored private var watchdog: Task<Void, Never>?
+    /// The sensor whose factory parameters this session has written to the
+    /// capture log.
+    @ObservationIgnored private var capturedSensor: String?
     @ObservationIgnored private let log = Logger(subsystem: "uk.co.bitwisemedia.glyph", category: "sensor")
 
     init(context: ModelContext, pipeline: ReadingPipeline, settings: AppSettings, scenario: GlucoseScenario? = nil) {
@@ -341,14 +341,10 @@ final class SensorController: UnlockCounter {
     }
 
     private func capture(_ encrypted: [UInt8], pairing: SensorPairing, arrival: Date) {
-        let line = "\(arrival.ISO8601Format()) uid=\(pairing.uid.hexString) frame=\(encrypted.hexString)\n"
-        let url = Self.captureURL
-        if let handle = try? FileHandle(forWritingTo: url) {
-            defer { try? handle.close() }
-            _ = try? handle.seekToEnd()
-            try? handle.write(contentsOf: Data(line.utf8))
-        } else {
-            try? Data(line.utf8).write(to: url)
+        if capturedSensor != pairing.serial {
+            FrameCapture.sensor(pairing, at: arrival)
+            capturedSensor = pairing.serial
         }
+        FrameCapture.frame(encrypted, pairing: pairing, arrival: arrival)
     }
 }

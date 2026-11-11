@@ -5,7 +5,7 @@ import Foundation
 import SwiftData
 
 enum Persistence {
-    static let schema = Schema([GlucoseReading.self, Sensor.self])
+    static let schema = Schema([GlucoseReading.self, Sensor.self, BloodReading.self])
 
     /// The store lives in the App Group container so a future extension
     /// (intents, a watch companion) can open it.

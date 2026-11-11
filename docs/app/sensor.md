@@ -1,6 +1,7 @@
 ---
 description:
-    The Sensor tab — pair, re-pair and remove a sensor, follow its wear, and check its identity and Bluetooth link.
+    The Sensor tab — pair, re-pair and remove a sensor, follow its wear, calibrate it with finger-pricks, and check its
+    identity and Bluetooth link.
 ---
 
 # Sensor
@@ -52,6 +53,40 @@ The buttons:
 How far through its life the sensor is: **Day 7 of 15**, a bar, the date and time it **ends**, and when it **started**.
 The end includes the 12-hour grace period.
 
+## Calibration
+
+Optional. Readings normally come from the sensor's **factory calibration**, with nothing for you to do. Some sensors
+read consistently high or low all the same. If finger-pricks keep disagreeing with Glyph, you can correct that sensor
+with them.
+
+1. Take a finger-prick, ideally when your glucose is steady (a → arrow) and not just after eating, insulin or exercise.
+   The sensor measures the fluid under the skin, which lags blood by several minutes.
+2. Tap **Add Finger-Prick**, enter the value in your display unit, and set **Taken** if it wasn't just now. The sheet
+   shows what the sensor read at that time and the difference. It warns you if glucose was changing quickly then.
+3. **Save**. New readings are corrected from then on. Readings already stored, and those already in Health, keep their
+   value.
+
+How the correction is worked out:
+
+- **One finger-prick**, or several at similar levels, shifts every reading by the average difference.
+- **Finger-pricks at least 2 mmol/L (36 mg/dL) apart** fit a straight line through them, so a sensor that's further out
+  at highs than at lows is corrected at both. The line's steepness is limited to between 0.7 and 1.5.
+- Newer finger-pricks count for more, because a sensor's error drifts over its wear. A finger-prick counts half as much
+  as one two days newer, and not at all after four days.
+
+The card shows what the correction does at each end of your target range (**Sensor 3.9 shows 5.1 mmol/L**, say), and the
+last five finger-pricks beside the sensor's value at the time. Touch and hold one to delete it.
+
+**Correct with finger-pricks** turns the correction off without losing the finger-pricks. **Reset** deletes them. Each
+sensor has its own: a new sensor starts on its factory calibration.
+
+!!! warning "Calibration can make readings worse"
+
+    A finger-prick taken while glucose is moving, with traces of food on your finger, or entered in the wrong unit
+    teaches Glyph the wrong correction. A single finger-prick also shifts lows as much as highs. If corrected readings
+    look wrong, reset the calibration. Glyph isn't a medical device. Check a finger-prick before treating a low or
+    dosing insulin.
+
 ## Before you scan
 
 A standing reminder of the two things that trip people up: turn off LibreLink's Bluetooth, and start new sensors with
@@ -86,8 +121,10 @@ allow it in <span class="gl-path">Settings ▸ Apps ▸ Glyph ▸ Bluetooth</spa
 
 ## Debug
 
-**Capture raw frames** appends every encrypted Bluetooth frame, and the sensor's NFC ID, to a log as hex. It's there to
-turn real sensors into test fixtures for Glyph's developers. While a log exists, **Share Captured Frames** sends it.
+**Capture raw frames** appends every encrypted Bluetooth frame, and the sensor's NFC ID, to a log as hex, with the
+sensor's factory calibration parameters and every finger-prick you enter. It's there to turn real sensors into test
+fixtures for Glyph's developers, and to compare the factory values with finger-pricks. While a log exists, **Share
+Captured Frames** sends it.
 
 !!! warning "The log identifies your sensor"
 

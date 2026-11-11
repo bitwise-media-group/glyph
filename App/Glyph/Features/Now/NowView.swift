@@ -82,6 +82,9 @@ struct CurrentReadingCard: View {
                         if let date = current?.date {
                             Label(age(of: date, at: context.date), systemImage: "clock")
                         }
+                        if current?.isCalibrated == true {
+                            Label("Calibrated", systemImage: "drop")
+                        }
                     }
                     .font(.subheadline)
                     .foregroundStyle(.secondary)

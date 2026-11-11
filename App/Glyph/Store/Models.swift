@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: MIT
 
 import Foundation
+import GlyphCore
 import LibreKit
 import SwiftData
 
@@ -16,21 +17,60 @@ final class GlucoseReading {
     var sensorSerial: String
     var sensorAge: Int
     var date: Date
+    /// The value shown everywhere: the factory value, corrected by the
+    /// user's finger-prick calibration when there was one.
     var mgdL: Double
+    /// The sensor's factory value before any user calibration. `nil` on
+    /// readings stored before calibration existed, where `mgdL` is the
+    /// factory value.
+    var factoryMgdL: Double?
     var raw: Int
     var rawTemperature: Int
     /// "trend" (one-minute) or "history" (fifteen-minute).
     var kind: String
 
-    init(sensorSerial: String, sample: GlucoseSample) {
+    /// `sample` carries the factory value; `correction` is the user's
+    /// calibration at the time, if any.
+    init(sensorSerial: String, sample: GlucoseSample, correction: LinearCorrection? = nil) {
         self.sensorSerial = sensorSerial
         sensorAge = sample.sensorAge
         date = sample.date
-        mgdL = sample.mgdL
+        mgdL = correction?.apply(sample.mgdL) ?? sample.mgdL
+        factoryMgdL = sample.mgdL
         raw = sample.raw
         rawTemperature = sample.rawTemperature
         kind = sample.kind.rawValue
     }
+}
+
+extension GlucoseReading {
+    /// The sensor's own value, whether or not it was calibrated.
+    var uncalibratedMgdL: Double { factoryMgdL ?? mgdL }
+}
+
+/// A finger-prick blood glucose value the user entered to calibrate a
+/// sensor, with the sensor's factory value at the same moment.
+@Model
+final class BloodReading {
+    #Index<BloodReading>([\.sensorSerial, \.date])
+
+    var sensorSerial: String
+    var date: Date
+    var mgdL: Double
+    /// The sensor's factory value at `date`, interpolated from the stored
+    /// readings.
+    var sensorMgdL: Double
+    var enteredAt: Date
+
+    init(sensorSerial: String, date: Date, mgdL: Double, sensorMgdL: Double, enteredAt: Date = .now) {
+        self.sensorSerial = sensorSerial
+        self.date = date
+        self.mgdL = mgdL
+        self.sensorMgdL = sensorMgdL
+        self.enteredAt = enteredAt
+    }
+
+    var point: CalibrationPoint { CalibrationPoint(date: date, bloodMgdL: mgdL, sensorMgdL: sensorMgdL) }
 }
 
 /// The paired sensor and everything needed to reconnect to it without

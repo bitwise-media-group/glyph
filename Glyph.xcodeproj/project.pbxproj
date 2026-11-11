@@ -26,12 +26,14 @@
 		5F038F2D70855E261B2DD2A0 /* ReadingPipeline.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9429ECFF89175B25F548712A /* ReadingPipeline.swift */; };
 		61E86A811E26D763E5BC5CDD /* GlyphApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 41E005BC20D0C077396A402F /* GlyphApp.swift */; };
 		702D57583A22C3FAF356D412 /* GlyphWidgets.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = 83ADFEF8E590D25977F64081 /* GlyphWidgets.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		7628AB482F4A656530F0A8EA /* CalibrationCard.swift in Sources */ = {isa = PBXBuildFile; fileRef = A1FB71649C4235BC3AC7752C /* CalibrationCard.swift */; };
 		771821B898ED3310022867DC /* GlyphWidgetsBundle.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA2616DB82CECB861A1BE5A /* GlyphWidgetsBundle.swift */; };
 		8266B413DAA33795B17919B5 /* SwiftUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A33FB4BF225FD264DE6B3FCD /* SwiftUI.framework */; };
 		8574072799ECABE93076F8C9 /* GlucoseLiveActivity.swift in Sources */ = {isa = PBXBuildFile; fileRef = 85669C114D8F6754A12A176B /* GlucoseLiveActivity.swift */; };
 		8EB96237034B472ACF0165E2 /* ScreenshotTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC0EFD14E49AAF651D1442FB /* ScreenshotTests.swift */; };
 		93C02FBA17212AC2E35E9D2E /* AGPChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA23B2FC844C0D4934D86D43 /* AGPChart.swift */; };
 		A289C8466804F7E8FF451914 /* ReservedRegionOverlay.swift in Sources */ = {isa = PBXBuildFile; fileRef = BFCEEE9F8F53EC089CEDF4F3 /* ReservedRegionOverlay.swift */; };
+		A9121F72974DA1C55CEA6A9E /* FrameCapture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 96DD07AA47D1A1260B9E3172 /* FrameCapture.swift */; };
 		A924271F73B95B7267560E67 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D9A26EA5F9B6C2118F0FB848 /* Assets.xcassets */; };
 		A974C342DD7E078C373DD3AB /* AppSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0BCA3D466B38101975296358 /* AppSettings.swift */; };
 		ABA2C3EE60019F8BDA034FA4 /* LibreKit in Frameworks */ = {isa = PBXBuildFile; productRef = 3B8558D06FA5A17F12108EFE /* LibreKit */; };
@@ -105,11 +107,13 @@
 		83ADFEF8E590D25977F64081 /* GlyphWidgets.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = GlyphWidgets.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		85669C114D8F6754A12A176B /* GlucoseLiveActivity.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseLiveActivity.swift; sourceTree = "<group>"; };
 		9429ECFF89175B25F548712A /* ReadingPipeline.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReadingPipeline.swift; sourceTree = "<group>"; };
+		96DD07AA47D1A1260B9E3172 /* FrameCapture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FrameCapture.swift; sourceTree = "<group>"; };
 		98AC75D232DD43C1CCB5336A /* AlertNotifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlertNotifier.swift; sourceTree = "<group>"; };
 		9CDA157A667849F7E342246C /* GlucoseWidget.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseWidget.swift; sourceTree = "<group>"; };
 		9E20AF1B268EE8105BE9CCB3 /* GlyphWidgets.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = GlyphWidgets.entitlements; sourceTree = "<group>"; };
 		A0BC1C9DF0257F2DFBB78208 /* NowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NowView.swift; sourceTree = "<group>"; };
 		A1CC6A29EF2F8E6671A54E80 /* GlucoseActivityAttributes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlucoseActivityAttributes.swift; sourceTree = "<group>"; };
+		A1FB71649C4235BC3AC7752C /* CalibrationCard.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalibrationCard.swift; sourceTree = "<group>"; };
 		A33FB4BF225FD264DE6B3FCD /* SwiftUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SwiftUI.framework; path = System/Library/Frameworks/SwiftUI.framework; sourceTree = SDKROOT; };
 		A739E31EBA4E1BE4956EE1D6 /* SensorSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SensorSource.swift; sourceTree = "<group>"; };
 		B9A63142F0B682B584B4F650 /* AppSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppSection.swift; sourceTree = "<group>"; };
@@ -221,6 +225,7 @@
 		3B7CF3256E40344A20908087 /* Sensor */ = {
 			isa = PBXGroup;
 			children = (
+				A1FB71649C4235BC3AC7752C /* CalibrationCard.swift */,
 				0DCFF709B789C33931EBD88F /* SensorView.swift */,
 			);
 			path = Sensor;
@@ -389,6 +394,7 @@
 		D9E2E69867A24301B93E0B1C /* Debug */ = {
 			isa = PBXGroup;
 			children = (
+				96DD07AA47D1A1260B9E3172 /* FrameCapture.swift */,
 				43786188CDFB7F6C37769C7C /* LaunchOptions.swift */,
 			);
 			path = Debug;
@@ -548,6 +554,8 @@
 				5AD267E8FBB6B13E6FD2C76D /* AppGroup.swift in Sources */,
 				57076ECDA6EBE841E86D8C65 /* AppSection.swift in Sources */,
 				A974C342DD7E078C373DD3AB /* AppSettings.swift in Sources */,
+				7628AB482F4A656530F0A8EA /* CalibrationCard.swift in Sources */,
+				A9121F72974DA1C55CEA6A9E /* FrameCapture.swift in Sources */,
 				FDB96BFBCFB2836978D26760 /* GlucoseActivityAttributes.swift in Sources */,
 				CEE11D37BBF6AFDF07E776F6 /* GlucoseChart.swift in Sources */,
 				BE5257490EF839C12818CD12 /* GlucoseStyle.swift in Sources */,

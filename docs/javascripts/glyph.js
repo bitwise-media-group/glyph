@@ -454,6 +454,11 @@
               (phase === "warming" ? "1%" : "41%") +
               '"><i></i></div><div class="gl-ui-sub">Ends Wednesday 18 November 14:20</div></div>'
             : "";
+        var calibration = p.paired
+            ? '<div class="gl-ui-card"><h5>Calibration</h5>' +
+              '<div class="gl-ui-sub">Readings use the sensor\'s factory calibration.</div>' +
+              '<div class="gl-ui-btns"><span class="gl-ui-btn gl-ui-btn--plain">Add Finger-Prick</span></div></div>'
+            : "";
         var before =
             '<div class="gl-ui-card"><h5>Before you scan</h5><div class="gl-ui-sub" style="color:var(--gl-ios-fg)">Only one app can receive a sensor\'s Bluetooth readings. In Settings ▸ Apps ▸ LibreLink, turn off Bluetooth.</div></div>';
         var bt =
@@ -466,7 +471,7 @@
             "</span></div>" +
             '<div><span class="k">Frames received</span><span class="v">8,412</span></div></div></div>';
         return phone(
-            screen({ title: "Sensor", tab: "sensor", body: status + wear + before + bt }),
+            screen({ title: "Sensor", tab: "sensor", body: status + wear + calibration + before + bt }),
             "The Sensor tab: " + p.label,
         );
     }

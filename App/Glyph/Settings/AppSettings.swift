@@ -16,6 +16,10 @@ final class AppSettings {
     var alerts: AlertSettings { didSet { store(alerts, Key.alerts) } }
     var healthKitEnabled: Bool { didSet { defaults.set(healthKitEnabled, forKey: Key.healthKit) } }
     var liveActivityEnabled: Bool { didSet { defaults.set(liveActivityEnabled, forKey: Key.liveActivity) } }
+    /// Whether the user's finger-prick values correct the sensor's readings.
+    /// It only has an effect once a sensor has some; off, the factory value
+    /// is used and the finger-pricks are kept.
+    var calibrationEnabled: Bool { didSet { defaults.set(calibrationEnabled, forKey: Key.calibration) } }
     /// Debug: append every raw BLE frame to a hex dump for test fixtures.
     var captureRawFrames: Bool { didSet { defaults.set(captureRawFrames, forKey: Key.captureRawFrames) } }
     /// Debug: replay a synthetic sensor instead of Bluetooth. Always on in
@@ -29,6 +33,7 @@ final class AppSettings {
         alerts = Self.load(AlertSettings.self, Key.alerts, from: defaults) ?? .defaults
         healthKitEnabled = defaults.bool(forKey: Key.healthKit)
         liveActivityEnabled = defaults.object(forKey: Key.liveActivity) as? Bool ?? true
+        calibrationEnabled = defaults.object(forKey: Key.calibration) as? Bool ?? true
         captureRawFrames = defaults.bool(forKey: Key.captureRawFrames)
         #if targetEnvironment(simulator)
             useSimulatedSensor = true
@@ -43,6 +48,7 @@ final class AppSettings {
         static let alerts = "alertSettings"
         static let healthKit = "healthKitEnabled"
         static let liveActivity = "liveActivityEnabled"
+        static let calibration = "calibrationEnabled"
         static let captureRawFrames = "captureRawFrames"
         static let simulated = "useSimulatedSensor"
     }

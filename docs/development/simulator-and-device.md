@@ -84,7 +84,10 @@ New protocol fixtures come from real sensors.
 
 1. On the phone, turn on **Sensor ▸ Debug ▸ Capture raw frames**.
 2. Let it stream for a while. Each frame is appended to `glyph-frames.log` in the app's Documents, as a `uid=… frame=…`
-   line of hex.
+   line of hex. The first frame from a sensor in each session is preceded by a `sensor … calibration=i1,…,i6` line with
+   its factory parameters (only NFC delivers those, so the frames alone can't be converted to mg/dL), and each
+   finger-prick you enter adds a `blood … mgdL=… sensorMgdL=…` line. Together they're enough to replay the sensor and
+   compare its factory values with blood.
 3. Tap **Share Captured Frames** to send the log, then turn it off again.
 
 </div>

@@ -57,7 +57,8 @@ The **trend arrow** comes from the sensor's own readings over the last few minut
 |   –   | Unknown          | not enough recent readings yet                      |
 
 Under the value, **±** is the change over the last five minutes, and the clock shows the reading's age: "Just now", then
-"1 min ago", "2 min ago" and so on.
+"1 min ago", "2 min ago" and so on. **Calibrated** appears beside them when your
+[finger-prick calibration](sensor.md#calibration) changed the value.
 
 ### When there's no reading
 

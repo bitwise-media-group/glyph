@@ -6,7 +6,8 @@ import SwiftUI
 
 /// Pairing and the sensor's health.
 ///
-/// Primary pane: the state, the scan / re-pair action and wear progress.
+/// Primary pane: the state, the scan / re-pair action, wear progress and
+/// the optional finger-prick calibration.
 /// Secondary pane: identity, Bluetooth signal and debug capture.
 struct SensorView: View {
     @Environment(SensorController.self) private var controller
@@ -19,6 +20,7 @@ struct SensorView: View {
                 statusCard
                 if let pairing = controller.pairing {
                     WearCard(pairing: pairing)
+                    CalibrationCard(serial: pairing.serial)
                 }
                 Card(title: "Before you scan") {
                     Text(
@@ -201,11 +203,13 @@ private struct DebugCard: View {
         @Bindable var settings = settings
         Card(title: "Debug") {
             Toggle("Capture raw frames", isOn: $settings.captureRawFrames)
-            Text("Appends each encrypted BLE frame and the sensor UID as hex, for building test fixtures.")
-                .font(.footnote)
-                .foregroundStyle(.secondary)
-            if FileManager.default.fileExists(atPath: SensorController.captureURL.path()) {
-                ShareLink(item: SensorController.captureURL) {
+            Text(
+                "Appends each encrypted BLE frame and the sensor UID as hex, with the sensor's factory calibration and your finger-pricks, for test fixtures and checking accuracy."
+            )
+            .font(.footnote)
+            .foregroundStyle(.secondary)
+            if FileManager.default.fileExists(atPath: FrameCapture.url.path()) {
+                ShareLink(item: FrameCapture.url) {
                     Label("Share Captured Frames", systemImage: "square.and.arrow.up")
                 }
             }
