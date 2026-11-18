@@ -54,7 +54,7 @@ jobs:
 
       # Only XcodeGen is installed: the Swift pin is for the Linux jobs.
       - name: Setup mise
-        uses: jdx/mise-action@6612f0ef07ed2a736cd1e00a94a065522dd41195 # v5.2.5
+        uses: jdx/mise-action@236a21c3b91f5db6d4e174b348674a0f0caac06d # v5.2.9
         with:
           version: v2026.10.25
           # sha256 of the macos-arm64 mise binary for the version above, from the
