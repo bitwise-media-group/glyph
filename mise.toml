@@ -30,4 +30,4 @@ includes = [".mise/common/tasks.toml", "tasks.toml"] # common first, repo-local 
 "core:swift" = "6.4.2"
 # Generates Glyph.xcodeproj from project.yml (`mise run gen`). macOS only:
 # XcodeGen ships no Linux build, and the Linux CI jobs don't need it.
-"aqua:yonaskolb/XcodeGen" = { version = "2.46.0", os = ["macos"] }
+"aqua:yonaskolb/XcodeGen" = { version = "2.47.0", os = ["macos"] }
