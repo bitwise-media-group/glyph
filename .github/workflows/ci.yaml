@@ -56,10 +56,10 @@ jobs:
       - name: Setup mise
         uses: jdx/mise-action@6612f0ef07ed2a736cd1e00a94a065522dd41195 # v5.2.5
         with:
-          version: v2026.10.25
+          version: v2026.11.10
           # sha256 of the macos-arm64 mise binary for the version above, from the
           # release's SHASUMS256.txt
-          sha256: 8a3ef00765b009278197aba627ac00d6e9c63f6aeb04d4f4b2cfe0e59ddc2fd6
+          sha256: 3f4ba9d21c6f2170048d0870fd98ab287e04730b76a6fc8e83964d59c80eb704
           install_args: aqua:yonaskolb/XcodeGen
 
       - name: Check Glyph.xcodeproj matches project.yml
