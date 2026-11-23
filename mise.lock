@@ -20,30 +20,30 @@ url = "https://github.com/yonaskolb/XcodeGen/releases/download/2.46.0/xcodegen.z
 url_api = "https://api.github.com/repos/yonaskolb/XcodeGen/releases/assets/478866069"
 
 [[tools.swift]]
-version = "6.4.2"
+version = "6.4.3"
 backend = "core:swift"
-specifiers = ["6.4.2"]
+specifiers = ["6.4.3"]
 
 [tools.swift.options]
 swift_platform = "ubuntu24.04"
 
 [tools.swift."platforms.linux-arm64"]
-checksum = "sha256:307772afcc0b9501faa4797eb4197076facf5768593a0d8d2b83615c95b0040e"
-url = "https://download.swift.org/swift-6.4.2-release/ubuntu2404-aarch64/swift-6.4.2-RELEASE/swift-6.4.2-RELEASE-ubuntu24.04-aarch64.tar.gz"
+checksum = "sha256:759306b7f7375e1b944c914cfebb2c164229da60dbd70430e4455d9b82186906"
+url = "https://download.swift.org/swift-6.4.3-release/ubuntu2404-aarch64/swift-6.4.3-RELEASE/swift-6.4.3-RELEASE-ubuntu24.04-aarch64.tar.gz"
 
 [tools.swift."platforms.linux-x64"]
-checksum = "sha256:2e9ebec040ad459dd89a6d093a02d8314939135104850fae4d5c0f174fb3ba8c"
-url = "https://download.swift.org/swift-6.4.2-release/ubuntu2404/swift-6.4.2-RELEASE/swift-6.4.2-RELEASE-ubuntu24.04.tar.gz"
+checksum = "sha256:9456e95bcbf73849dde44c90e94c6e4f747f72b35f70891eb7ea8562a2aea202"
+url = "https://download.swift.org/swift-6.4.3-release/ubuntu2404/swift-6.4.3-RELEASE/swift-6.4.3-RELEASE-ubuntu24.04.tar.gz"
 
 [[tools.swift]]
-version = "6.4.2"
+version = "6.4.3"
 backend = "core:swift"
-specifiers = ["6.4.2"]
+specifiers = ["6.4.3"]
 
 [tools.swift."platforms.macos-arm64"]
-checksum = "sha256:0a7d8489900d21dbf5f0187cb570e646a4c0226d0ddef2cbde8c7f54dfe79736"
-url = "https://download.swift.org/swift-6.4.2-release/xcode/swift-6.4.2-RELEASE/swift-6.4.2-RELEASE-osx.pkg"
+checksum = "sha256:ccbfc46b166625613286abfa63b6e974b5b6a7c2205e5bc9e52d09f6e051e859"
+url = "https://download.swift.org/swift-6.4.3-release/xcode/swift-6.4.3-RELEASE/swift-6.4.3-RELEASE-osx.pkg"
 
 [tools.swift."platforms.macos-x64"]
-checksum = "sha256:0a7d8489900d21dbf5f0187cb570e646a4c0226d0ddef2cbde8c7f54dfe79736"
-url = "https://download.swift.org/swift-6.4.2-release/xcode/swift-6.4.2-RELEASE/swift-6.4.2-RELEASE-osx.pkg"
+checksum = "sha256:ccbfc46b166625613286abfa63b6e974b5b6a7c2205e5bc9e52d09f6e051e859"
+url = "https://download.swift.org/swift-6.4.3-release/xcode/swift-6.4.3-RELEASE/swift-6.4.3-RELEASE-osx.pkg"
