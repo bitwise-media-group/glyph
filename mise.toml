@@ -27,7 +27,7 @@ includes = [".mise/common/tasks.toml", "tasks.toml"] # common first, repo-local 
 [tools]
 # swift.org toolchain: on macOS it builds against the Xcode SDK; on Linux CI it
 # builds and tests LibreKit (Foundation only).
-"core:swift" = "6.4.2"
+"core:swift" = "6.4.3"
 # Generates Glyph.xcodeproj from project.yml (`mise run gen`). macOS only:
 # XcodeGen ships no Linux build, and the Linux CI jobs don't need it.
 "aqua:yonaskolb/XcodeGen" = { version = "2.46.0", os = ["macos"] }
